@@ -15,7 +15,8 @@ from gymnasium import spaces
 from collections import defaultdict
 import json
 import cv2
-
+import uuid
+import os
 class RecordCallback(MinecraftCallback):
     def __init__(self, record_path: str, fps: int = 20, frame_type: Literal['pov', 'obs'] = 'pov', recording: bool = True,
                     show_actions=False,record_actions=False,record_infos=False,record_origin_observation=False,
@@ -102,7 +103,10 @@ class RecordCallback(MinecraftCallback):
     def _save_episode(self):
         if len(self.frames) == 0:
             return 
-        output_path = self.record_path / f'episode_{self.episode_id}.mp4'
+
+        random_id = str(uuid.uuid4())[:8]  # Generate a random ID for the episode
+        os.makedirs(self.record_path / f'episode_{self.episode_id}', exist_ok=True)
+        output_path = self.record_path / f'episode_{self.episode_id}'/f'{random_id}.mp4'
         with av.open(output_path, mode="w", format='mp4') as container:
             stream = container.add_stream("h264", rate=self.fps)
             stream.width = self.frames[0].shape[1]

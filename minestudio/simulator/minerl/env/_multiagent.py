@@ -26,14 +26,14 @@ import cv2
 from minestudio.simulator.minerl.herobraine.env_spec import EnvSpec
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
-MAX_RESETTING_ENV_COUNT = max(4, os.cpu_count() // 12) if os.cpu_count() is not None else 20
+MAX_RESETTING_ENV_COUNT = max(4, os.cpu_count() // 4) if os.cpu_count() is not None else 20
 
 NS = "{http://ProjectMalmo.microsoft.com}"
 STEP_OPTIONS = 0
 
 MAX_WAIT = 600 * 5  # Time to wait before raising an exception (high value because some operations we wait on are very slow)
 # SOCKTIME = 60.0 * 4 * 5  # After this much time a socket exception will be thrown.
-SOCKTIME = 60. * 2
+SOCKTIME = 60. * 15 #2
 TICK_LENGTH = 0.05
 
 logger = logging.getLogger(__name__)

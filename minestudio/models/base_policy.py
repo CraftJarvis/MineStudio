@@ -83,6 +83,7 @@ class MinePolicy(torch.nn.Module, ABC):
                 state_in = recursive_tensor_op(lambda x: x.unsqueeze(0), state_in)
         elif input_shape != "BT*":
             raise NotImplementedError
+        
         latents, state_out = self.forward(input, state_in, **kwargs)
         action = self.pi_head.sample(latents['pi_logits'], deterministic)
         self.vpred = latents['vpred']
@@ -107,7 +108,7 @@ class MinePolicy(torch.nn.Module, ABC):
         elif isinstance(elem, str):
             return [[elem]]
         else:
-            raise NotImplementedError
+            return elem
 
     # For online
     def merge_input(self, inputs) -> torch.tensor:

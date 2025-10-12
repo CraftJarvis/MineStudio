@@ -365,10 +365,11 @@ def bandify(b_nd, t, T):
     D_tnT = _banded_repeat(b_nT, t)
     return D_tnT
 
-
+def identity(x):
+    return x
 def get_norm(name, d, dtype=th.float32):
     if name == "none":
-        return lambda x: x
+        return identity
     elif name == "layer":
         return tu.LayerNorm(d, dtype=dtype)
     else:

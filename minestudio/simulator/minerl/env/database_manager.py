@@ -10,7 +10,8 @@ import sys
 import time
 from rich.console import Console
 
-DATABASE_DIR = str(Path(__file__).parent.parent / "tmp" / "database")
+DATABASE_DIR = str(Path(__file__).parent.parent / "tmp" / "database" / f"{os.getpid()}")
+
 RESETTING_EXPIRE = 5 * 60
 if not os.path.exists(DATABASE_DIR):
     os.makedirs(DATABASE_DIR)

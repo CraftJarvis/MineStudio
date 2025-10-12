@@ -147,7 +147,7 @@ class MinecraftSim(gymnasium.Env):
             action = self.agent_action_to_env_action(action)
         for callback in self.callbacks:
             action = callback.before_step(self, action)
-            
+        
         obs, reward, done, info = self.env.step(action.copy()) 
 
         terminated, truncated = done, done
