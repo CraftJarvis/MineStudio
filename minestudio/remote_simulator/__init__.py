@@ -1,0 +1,1 @@
+from minestudio.remote_simulator.remote_entry import MinecraftSimRemote
