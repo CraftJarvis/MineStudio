@@ -1,4 +1,4 @@
-from minestudio.remote_simulator import MinecraftSimRemote
+from minestudio.server import MinecraftSimRemote
 from minestudio.simulator.callbacks import RecordCallback, SpeedTestCallback
 from minestudio.models import VPTPolicy, load_vpt_policy
 

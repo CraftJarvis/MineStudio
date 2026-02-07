@@ -1,1 +1,1 @@
-from minestudio.remote_simulator.remote_entry import MinecraftSimRemote
+from minestudio.server.remote_entry import MinecraftSimRemote
