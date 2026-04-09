@@ -1038,8 +1038,8 @@ public class ClientStateMachine extends StateMachine implements IMalmoMessageLis
             if (as.getAgentStart() != null && as.getAgentStart().getPlacement() != null)
             {
                 PosAndDirection pos = as.getAgentStart().getPlacement();
-                int x = MathHelper.floor(pos.getX().doubleValue()) >> 4;
-                int z = MathHelper.floor(pos.getZ().doubleValue()) >> 4;
+                int x = MathHelper.floor((double) pos.getX()) >> 4;
+                int z = MathHelper.floor((double) pos.getZ()) >> 4;
                 // Now get the chunk we should be starting in:
                 IChunkProvider chunkprov = Minecraft.getMinecraft().world.getChunkProvider();
                 EntityPlayerSP player = Minecraft.getMinecraft().player;
@@ -1053,9 +1053,9 @@ public class ClientStateMachine extends StateMachine implements IMalmoMessageLis
                         // We're in the right chunk, and it's not an empty chunk.
                         // We're ready to proceed, but first set our client positions to where we ought to be.
                         // The server should be doing this too, but there's no harm (probably) in doing it ourselves.
-                        player.posX = pos.getX().doubleValue();
-                        player.posY = pos.getY().doubleValue();
-                        player.posZ = pos.getZ().doubleValue();
+                        player.posX = (double) pos.getX();
+                        player.posY = (double) pos.getY();
+                        player.posZ = (double) pos.getZ();
                         return true;
                     }
                 }
@@ -1280,9 +1280,9 @@ public class ClientStateMachine extends StateMachine implements IMalmoMessageLis
                                 PosAndDirection pos = startSection.getPlacement();
                                 if (pos == null)
                                     pos = new PosAndDirection();
-                                pos.setX(new BigDecimal(x));
-                                pos.setY(new BigDecimal(y));
-                                pos.setZ(new BigDecimal(z));
+                                pos.setX((float) x);
+                                pos.setY((float) y);
+                                pos.setZ((float) z);
                                 startSection.setPlacement(pos);
                                 as.setAgentStart(startSection);
                             }

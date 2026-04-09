@@ -59,9 +59,9 @@ public class MovingTargetDecoratorImplementation extends HandlerBase implements 
         DrawBlockBasedObjectType targetBlock = this.targetParams.getBlockType();
         this.blockType = (targetBlock != null) ? new XMLBlockState(targetBlock.getType(), targetBlock.getColour(), targetBlock.getFace(), targetBlock.getVariant()) : null;
         Pos pos = this.targetParams.getStartPos();
-        int xPos = pos.getX().intValue();
-        int yPos = pos.getY().intValue();
-        int zPos = pos.getZ().intValue();
+        int xPos = (int) pos.getX();
+        int yPos = (int) pos.getY();
+        int zPos = (int) pos.getZ();
         // Check start pos lies within arena:
         xPos = Math.min(this.arenaBounds.getMax().getX(), Math.max(this.arenaBounds.getMin().getX(),  xPos));
         yPos = Math.min(this.arenaBounds.getMax().getY(), Math.max(this.arenaBounds.getMin().getY(),  yPos));

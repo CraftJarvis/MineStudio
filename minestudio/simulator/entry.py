@@ -101,17 +101,34 @@ class MinecraftSim(gymnasium.Env):
     :param camera_config: The configuration for camera quantization and binning settings.
     :keyword kwargs: Additional keyword arguments.
     """
+
+    def __new__(cls, *args, **kwargs):
+        host = kwargs.get('host', None)
+        port = kwargs.get('port', None)
+        
+        if host and port:
+            host = str(host)
+            port = int(port)
+            from minestudio.server import MinecraftSimRemote
+            print(f"Detected host/port. Redirecting to Remote Simulator...")
+            return MinecraftSimRemote(*args, **kwargs)
+        
+        instance = super(MinecraftSim, cls).__new__(cls)
+        return instance
+    
+
     def __init__(
         self,  
         action_type: Literal['env', 'agent'] = 'agent', # the style of the action space
         obs_size: Tuple[int, int] = (224, 224),         # the resolution of the observation (cv2 resize)
         render_size: Tuple[int, int] = (640, 360),      # the original resolution of the game is 640x360
-        seed: int = 0,                                  # the seed of the minecraft world
+        seed: int = None,                                  # the seed of the minecraft world
         inventory: Dict = {},                           # the initial inventory of the agent
         preferred_spawn_biome: Optional[str] = None,    # the preferred spawn biome when call reset 
         num_empty_frames: int = 20,                     # the number of empty frames to skip when calling reset
         callbacks: List[MinecraftCallback] = [],        # the callbacks to be called before and after each basic calling
         camera_config:CameraConfig=None,                # the configuration for camera quantization and binning settings
+        restore_checkpoint_path: Optional[str] = None,   # 新增：恢复检查点的路径，如果提供，将在初始化时加载该检查点
         **kwargs
     ) -> Any:
         super().__init__()
@@ -133,9 +150,11 @@ class MinecraftSim(gymnasium.Env):
             resolution = render_size, 
             inventory = inventory,
             preferred_spawn_biome = preferred_spawn_biome, 
-        ).make()
+            load_filename=restore_checkpoint_path,   # 透传
+        ).make(load_filename=restore_checkpoint_path)
 
-        self.env.seed(seed)
+        if self.env.seed is not None:
+            self.env.seed(seed)
         self.already_reset = False
         
         if camera_config is None:
@@ -179,7 +198,7 @@ class MinecraftSim(gymnasium.Env):
         action = self.action_mapper.from_factored(action)
         return action
     
-    def step(self, action: Dict[str, Any]) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:
+    def step(self, action: Dict[str, Any], no_callback=False) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:
         """Runs one timestep of the environment's dynamics.
 
         :param action: The action to take.
@@ -193,16 +212,19 @@ class MinecraftSim(gymnasium.Env):
             action.pop('camera')
             action.update(env_action)
             
-        for callback in self.callbacks:
-            action = callback.before_step(self, action)
+        if not no_callback:
+            for callback in self.callbacks:
+                action = callback.before_step(self, action)
 
         obs, reward, done, info = self.env.step(action.copy()) 
 
         terminated, truncated = done, done
         obs, info = self._wrap_obs_info(obs, info)
-        for callback in self.callbacks:
-            obs, reward, terminated, truncated, info = callback.after_step(self, obs, reward, terminated, truncated, info)
-            self.obs, self.info = obs, info
+        
+        if not no_callback:
+            for callback in self.callbacks:
+                obs, reward, terminated, truncated, info = callback.after_step(self, obs, reward, terminated, truncated, info)
+                self.obs, self.info = obs, info
         return obs, reward, terminated, truncated, info
 
     def reset(self) -> Tuple[np.ndarray, Dict]:

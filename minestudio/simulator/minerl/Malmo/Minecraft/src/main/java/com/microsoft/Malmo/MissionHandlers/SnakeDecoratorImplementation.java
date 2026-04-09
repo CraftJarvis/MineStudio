@@ -259,9 +259,9 @@ public class SnakeDecoratorImplementation extends HandlerBase implements IWorldD
 	{
         // Position the start point:
         PosAndDirection p = new PosAndDirection();
-        p.setX(new BigDecimal(this.buildX));
-        p.setY(new BigDecimal(this.buildY));
-        p.setZ(new BigDecimal(this.buildZ));
+        p.setX((float) (this.buildX));
+        p.setY((float) (this.buildY));
+        p.setZ((float) (this.buildZ));
         for (AgentSection as : missionInit.getMission().getAgentSection())
         {
 	        p.setPitch(as.getAgentStart().getPlacement().getPitch());

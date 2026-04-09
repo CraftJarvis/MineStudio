@@ -1,0 +1,13 @@
+<jxb:bindings
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    version="2.1">
+
+    <jxb:globalBindings>
+        <jxb:javaType name="java.math.BigDecimal"
+                      xmlType="xsd:decimal"
+                      parseMethod="javax.xml.bind.DatatypeConverter.parseDecimal"
+                      printMethod="javax.xml.bind.DatatypeConverter.printDecimal"/>
+    </jxb:globalBindings>
+
+</jxb:bindings>

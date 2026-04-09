@@ -206,9 +206,9 @@ public class ClassroomDecoratorImplementation extends HandlerBase implements IWo
         this.drawContext.endDrawing(world);
         // set the agent positions
         PosAndDirection p2 = new PosAndDirection();
-        p2.setX(new BigDecimal(startRoom.x + this.rand.nextInt(goalRoom.width-2) + 0.5));
-        p2.setY(new BigDecimal(1 + startRoom.y));
-        p2.setZ(new BigDecimal(startRoom.z + 0.5));
+        p2.setX((float) ((startRoom.x + this.rand.nextInt(goalRoom.width-2)) + 0.5));
+        p2.setY((float) ((1 + startRoom.y)));
+        p2.setZ((float) ((startRoom.z + 0.5)));
 
         // TODO - for the moment, force all players to being at the maze start point - but this needs to be optional.
         for (AgentSection as : missionInit.getMission().getAgentSection())

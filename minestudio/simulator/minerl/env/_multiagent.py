@@ -75,6 +75,7 @@ class _MultiAgentEnv(gym.Env):
                  verbose: bool = False,
                  _xml_mutator_to_be_deprecated: Optional[Callable] = None,
                  refresh_instances_every: Optional[int] = None,
+                 load_filename: Optional[str] = None
                  ):
         """
         Constructor of MineRLEnv.
@@ -89,6 +90,7 @@ class _MultiAgentEnv(gym.Env):
         """
         self.task = env_spec
         self.instances = instances if instances is not None else []  # type: List[MinecraftInstance]
+        self.load_filename = load_filename
 
         # TO DEPRECATE (FOR ENV_SPECS)
 
@@ -631,7 +633,13 @@ class _MultiAgentEnv(gym.Env):
         while ok != 1:
             # roundtrip through etree to escape symbols correctly
             # and make printing pretty
-            mission_xml = etree.tostring(mission_xml_etree)
+            #mission_xml = etree.tostring(mission_xml_etree)
+
+            mission_xml = etree.tostring(mission_xml_etree, pretty_print=True, encoding="utf-8")
+            print("===== FINAL MISSION XML =====")
+            print(mission_xml.decode("utf-8"))
+            print("===== END MISSION XML =====")
+
             token = (
                     token_in
                     + ":"
@@ -832,16 +840,28 @@ class _MultiAgentEnv(gym.Env):
     def _TO_MOVE_hello(sock):
         comms.send_message(sock, ("<MalmoEnv" + malmo_version + "/>").encode())
 
+    # def _get_new_instance(self, port=None, instance_id=None):
+    #     """
+    #     Gets a new instance and sets up a logger if need be. 
+    #     """
+
+    #     if port is not None:
+    #         instance = InstanceManager.add_existing_instance(port)
+    #     else:
+    #         instance = InstanceManager.get_instance(os.getpid(), instance_id=instance_id)
     def _get_new_instance(self, port=None, instance_id=None):
-        """
-        Gets a new instance and sets up a logger if need be. 
-        """
-
         if port is not None:
-            instance = InstanceManager.add_existing_instance(port)
+            instance = InstanceManager.add_existing_instance(
+                port,
+                load_filename=self.load_filename,
+            )
         else:
-            instance = InstanceManager.get_instance(os.getpid(), instance_id=instance_id)
-
+            instance = InstanceManager.get_instance(
+                os.getpid(),
+                instance_id=instance_id,
+                load_filename=self.load_filename,
+            )
+            
         if InstanceManager.is_remote():
             launch_queue_logger_thread(instance, self.is_closed)
 

@@ -63,15 +63,15 @@ public class NavigationDecoratorImplementation extends HandlerBase implements IW
 	@Override
 	public void buildOnWorld(MissionInit missionInit, World world) throws DecoratorException {
 		if (nparams.getRandomPlacementProperties().getOrigin() != null)
-			originX = nparams.getRandomPlacementProperties().getOrigin().getX().doubleValue();
+			originX = (double) nparams.getRandomPlacementProperties().getOrigin().getX();
 		else
 			originX = world.getSpawnPoint().getX();
 		if (nparams.getRandomPlacementProperties().getOrigin() != null)
-			originY = nparams.getRandomPlacementProperties().getOrigin().getY().doubleValue();
+			originY = (double) nparams.getRandomPlacementProperties().getOrigin().getY();
 		else
 			originY = world.getSpawnPoint().getY();
 		if (nparams.getRandomPlacementProperties().getOrigin() != null)
-			originZ = nparams.getRandomPlacementProperties().getOrigin().getZ().doubleValue();
+			originZ = (double) nparams.getRandomPlacementProperties().getOrigin().getZ();
 		else
 			originZ = world.getSpawnPoint().getZ();
 

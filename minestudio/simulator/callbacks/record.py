@@ -74,6 +74,7 @@ class RecordCallback(MinecraftCallback):
         :param reset_flag: The reset flag.
         :return: The reset flag.
         """
+        print("seed:", sim.seed)
         if self.recording:
             self._save_episode()
             self.episode_id += 1
@@ -90,6 +91,8 @@ class RecordCallback(MinecraftCallback):
         :param info: Additional information from the simulator.
         :return: The observation and info.
         """
+        print("seed:", sim.seed)
+        sim.env.execute_cmd("/seed")
         sim.callback_messages.add("Press 'R' to start/stop recording.")
         # this message would be displayed in the GUI when command mode is on
         info['message'] = self._get_message(info)

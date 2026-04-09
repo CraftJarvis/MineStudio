@@ -798,9 +798,9 @@ public class ServerStateMachine extends StateMachine
                             // Set their initial position and speed:
                             PosAndDirection pos = as.getAgentStart().getPlacement();
                             if (pos != null) {
-                                player.posX = pos.getX().doubleValue();
-                                player.posY = pos.getY().doubleValue();
-                                player.posZ = pos.getZ().doubleValue();
+                                player.posX = (double) pos.getX();
+                                player.posY = (double) pos.getY();
+                                player.posZ = (double) pos.getZ();
                             }
                             // And set their game type back now:
                             player.setGameType(GameType.getByName(as.getMode().name().toLowerCase()));
@@ -927,9 +927,9 @@ public class ServerStateMachine extends StateMachine
         }
         
         private void setPlayerAbsolutePosition(EntityPlayerMP player, PosAndDirection pos) {
-            player.rotationYaw = pos.getYaw().floatValue();
-            player.rotationPitch = pos.getPitch().floatValue();
-            player.setPositionAndUpdate(pos.getX().doubleValue(), pos.getY().doubleValue(), pos.getZ().doubleValue());
+            player.rotationYaw = pos.getYaw();
+            player.rotationPitch = pos.getPitch();
+            player.setPositionAndUpdate((double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
             player.onUpdate(); // Needed to force scene to redraw
         }
 

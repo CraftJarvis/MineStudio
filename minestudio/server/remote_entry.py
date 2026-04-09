@@ -6,101 +6,71 @@ import rpyc
 import numpy as np
 from typing import Dict, Any, Tuple, Literal, List, Optional
 from minestudio.simulator.entry import CameraConfig, MinecraftCallback
+import pickle
 
-SERVER_HOST = "172.17.40.12"
-SERVER_PORT = 18861
+def _sanitize_action_for_rpc(action):
+    """
+    将 action 转换为可以安全通过 RPyC 传输的格式。
+    剥离所有的 Torch Tensor 或复杂的引用。
+    """
+    import torch
+    import numpy as np
+
+    if isinstance(action, dict):
+        return {k: _sanitize_action_for_rpc(v) for k, v in action.items()}
+    elif isinstance(action, (list, tuple)):
+        return [_sanitize_action_for_rpc(x) for x in action]
+    elif hasattr(action, 'detach'):  # 捕获 Torch Tensor
+        # 如果是 tensor，转成 numpy
+        return action.detach().cpu().numpy()
+    elif isinstance(action, np.ndarray):
+        # 确保是连续内存的 numpy 数组，有时能避免 rpyc 序列化问题
+        return np.ascontiguousarray(action)
+    else:
+        return action
 
 class MinecraftSimRemote(gymnasium.Env):
-    """
-    MinecraftSim 的远程代理版本。
-    API 与 MinecraftSim 保持一致。
-    """
-    def __init__(
-        self,   
-        host: str = SERVER_HOST,
-        port: int = SERVER_PORT,
-        # 以下参数与 MinecraftSim 保持一致
-        action_type: Literal['env', 'agent'] = 'agent',
-        obs_size: Tuple[int, int] = (224, 224),
-        render_size: Tuple[int, int] = (640, 360),
-        seed: int = 0,
-        inventory: Dict = {},
-        preferred_spawn_biome: Optional[str] = None,
-        num_empty_frames: int = 20,
-        callbacks: List[MinecraftCallback] = [],
-        camera_config: CameraConfig = None,
-        **kwargs
-    ) -> Any:
+    def __init__(self, host, port, **kwargs):
         super().__init__()
-        
         # 1. 建立连接
-        print(f"Connecting to remote simulator at {host}:{port}...")
-        self.conn = rpyc.connect(host, port, config={
-            'allow_pickle': True, 
-            'sync_request_timeout': 300,
-            'allow_public_attrs': True,
-            'allow_all_attrs': True
-        })
-        
-        # 2. 在远程服务器上创建实例
-        self.remote_sim = self.conn.root.create_sim(
-            action_type=action_type,
-            obs_size=obs_size,
-            render_size=render_size,
-            seed=seed,
-            inventory=inventory,
-            preferred_spawn_biome=preferred_spawn_biome,
-            num_empty_frames=num_empty_frames,
-            callbacks=callbacks,
-            camera_config=camera_config,
-            **kwargs
+        self.conn = rpyc.connect(host, int(port), config={
+                'allow_pickle': True, 
+                'sync_request_timeout': 300,
+                'allow_public_attrs': True,
+                'allow_all_attrs': True
+            }
         )
-        print("Remote Minecraft instance initialized.")
+        
+        # 2. 通知 Server 创建实例
+        self.conn.root.create_sim(**kwargs)
+        
+        # 3. 缓存 space 信息（避免每次都跨网络读取）
+        aspace, ospace = self.conn.root.get_spaces()
+        self._action_space = rpyc.utils.classic.obtain(aspace)
+        self._observation_space = rpyc.utils.classic.obtain(ospace)
+        print("Remote session established.")
 
-    def step(self, action: Dict[str, Any]) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:
-        # 调用远程 step
-        obs, reward, terminated, truncated, info = self.remote_sim.step(action)
-        
-        # [关键优化] 使用 rpyc.utils.classic.obtain 将远程对象(NetRef)转换为本地对象
-        # 如果不加这一步，访问 obs['image'] 会极其缓慢，因为每次像素读取都会触发网络请求
-        obs = rpyc.utils.classic.obtain(obs)
-        info = rpyc.utils.classic.obtain(info)
-        
-        return obs, reward, terminated, truncated, info
-
-    def reset(self) -> Tuple[np.ndarray, Dict]:
-        obs, info = self.remote_sim.reset()
-        obs = rpyc.utils.classic.obtain(obs)
-        info = rpyc.utils.classic.obtain(info)
-        
+    def reset(self, **kwargs):
+        # 像 step 一样，直接调用服务端的 reset
+        res = self.conn.root.reset()
+        # 关键：必须 obtain 转换回本地 numpy 格式，否则 policy 无法计算
+        obs, info = rpyc.utils.classic.obtain(res)
         return obs, info
 
-    def render(self) -> None:
-        image = self.remote_sim.render()
-        return rpyc.utils.classic.obtain(image)
+    def step(self, action):
+        pickled_action = pickle.dumps(action)
+        res = self.conn.root.step_pickled(pickled_action)
+        obs, reward, terminated, truncated, info = rpyc.utils.classic.obtain(res)
+        return obs, reward, terminated, truncated, info
 
-    def close(self) -> None:
-        if hasattr(self, 'remote_sim'):
-            self.remote_sim.close()
-        if hasattr(self, 'conn'):
-            self.conn.close()
-
-    def noop_action(self) -> Dict[str, Any]:
-        return rpyc.utils.classic.obtain(self.remote_sim.noop_action())
+    def close(self):
+        self.conn.root.close()
+        self.conn.close()
 
     @property
     def action_space(self):
-        # 缓存 space 对象，避免重复网络请求
-        if not hasattr(self, '_action_space'):
-            self._action_space = rpyc.utils.classic.obtain(self.remote_sim.action_space)
         return self._action_space
 
     @property
     def observation_space(self):
-        if not hasattr(self, '_observation_space'):
-            self._observation_space = rpyc.utils.classic.obtain(self.remote_sim.observation_space)
         return self._observation_space
-    
-    def __getattr__(self, name):
-        """代理其他所有未显式定义的方法到远程对象"""
-        return getattr(self.remote_sim, name)

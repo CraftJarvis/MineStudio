@@ -548,9 +548,9 @@ public class MazeDecoratorImplementation extends HandlerBase implements IWorldDe
                 double z = scale * (cell.z + 0.5) + this.zOrg;
                 PointWithToleranceAndDescription ptd = new PointWithToleranceAndDescription();
                 ptd.setTolerance(new BigDecimal(1.0));
-                ptd.setX(new BigDecimal(x));
-                ptd.setY(new BigDecimal(y));
-                ptd.setZ(new BigDecimal(z));
+                ptd.setX((float) (x));
+                ptd.setY((float) (y));
+                ptd.setZ((float) (z));
                 ptd.setDescription("MazeSubpoint_" + String.valueOf(i));
                 i++;
                 this.navigator.getPoint().add(ptd);
@@ -628,9 +628,9 @@ public class MazeDecoratorImplementation extends HandlerBase implements IWorldDe
 
         // Position the start point:
         PosAndDirection p = new PosAndDirection();
-        p.setX(new BigDecimal(scale * (start.x + 0.5) + this.xOrg));
-        p.setY(new BigDecimal(1 + this.yOrg + this.startHeight));
-        p.setZ(new BigDecimal(scale * (start.z + 0.5) + this.zOrg));
+        p.setX((float) ((scale * (start.x + 0.5)) + this.xOrg));
+        p.setY((float) ((1 + this.yOrg + this.startHeight)));
+        p.setZ((float) ((scale * (start.z + 0.5)) + this.zOrg));
         this.startPosition = p;
         // TODO - for the moment, force all players to being at the maze start point - but this needs to be optional.
         for (AgentSection as : missionInit.getMission().getAgentSection())
@@ -651,9 +651,9 @@ public class MazeDecoratorImplementation extends HandlerBase implements IWorldDe
             double endX = scale * (end.x + 0.5) + this.xOrg;
             double endY = 1 + this.optimalPathHeight + this.yOrg;   // Assuming we approach on the optimal path, need the height of the goal to be reachable.
             double endZ = scale * (end.z + 0.5) + this.zOrg;
-            endpoint.setX(new BigDecimal(endX));
-            endpoint.setY(new BigDecimal(endY));
-            endpoint.setZ(new BigDecimal(endZ));
+            endpoint.setX((float) (endX));
+            endpoint.setY((float) (endY));
+            endpoint.setZ((float) (endZ));
             this.quitter.getMarker().add(endpoint);
         }
     }
@@ -786,9 +786,9 @@ public class MazeDecoratorImplementation extends HandlerBase implements IWorldDe
         }
 
         // Also add our new start data:
-        Float x = this.startPosition.getX().floatValue();
-        Float y = this.startPosition.getY().floatValue();
-        Float z = this.startPosition.getZ().floatValue();
+        Float x = this.startPosition.getX();
+        Float y = this.startPosition.getY();
+        Float z = this.startPosition.getZ();
         String posString = x.toString() + ":" + y.toString() + ":" + z.toString();
         data.put("startPosition", posString);
 

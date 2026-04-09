@@ -71,20 +71,42 @@ class HumanSurvival(HumanControlEnvSpec):
     def create_rewardables(self) -> List[Handler]:
         return []
 
-    def create_agent_start(self) -> List[Handler]:
-        retval = super().create_agent_start()
-        if self.load_filename is not None:
-            retval.append(handlers.LoadWorldAgentStart(self.load_filename))
-        if self.inventory is not None:
-            retval.append(handlers.InventoryAgentStart(self.inventory))
-        if self.preferred_spawn_biome is not None:
-            retval.append(handlers.PreferredSpawnBiome(self.preferred_spawn_biome),)
-        return retval
+    # def create_agent_start(self) -> List[Handler]:
+    #     retval = super().create_agent_start()
+    #     if self.load_filename is not None:
+    #         retval.append(handlers.LoadWorldAgentStart(self.load_filename))
+    #     if self.inventory is not None:
+    #         retval.append(handlers.InventoryAgentStart(self.inventory))
+    #     if self.preferred_spawn_biome is not None:
+    #         retval.append(handlers.PreferredSpawnBiome(self.preferred_spawn_biome),)
+    #     return retval
 
     def create_agent_handlers(self) -> List[Handler]:
         return []
 
+    # def create_server_world_generators(self) -> List[Handler]:
+    #     if self.load_filename is not None:
+    #         return []
+    #     return [handlers.DefaultWorldGenerator(force_reset=True)]
+
+
+    # load world folder?
+    def create_agent_start(self) -> List[Handler]:
+        retval = super().create_agent_start()
+        if self.inventory is not None:
+            retval.append(handlers.InventoryAgentStart(self.inventory))
+        if self.preferred_spawn_biome is not None:
+            retval.append(handlers.PreferredSpawnBiome(self.preferred_spawn_biome))
+        return retval
+
     def create_server_world_generators(self) -> List[Handler]:
+        print("loading:", repr(self.load_filename))
+        if self.load_filename is not None:
+            return [handlers.FileWorldGenerator(
+                self.load_filename,
+                force_reset=True,
+                destroy_after_use=False
+            )]
         return [handlers.DefaultWorldGenerator(force_reset=True)]
 
     def create_server_quit_producers(self) -> List[Handler]:

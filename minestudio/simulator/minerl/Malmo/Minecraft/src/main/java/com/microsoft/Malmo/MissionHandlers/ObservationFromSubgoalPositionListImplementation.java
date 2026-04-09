@@ -59,8 +59,8 @@ public class ObservationFromSubgoalPositionListImplementation extends HandlerBas
 
         while (this.subgoalIndex < nTargets && !foundNextPoint)
         {
-            targetx = this.positions.getPoint().get(this.subgoalIndex).getX().doubleValue();
-            targetz = this.positions.getPoint().get(this.subgoalIndex).getZ().doubleValue();
+            targetx = (double) this.positions.getPoint().get(this.subgoalIndex).getX();
+            targetz = (double) this.positions.getPoint().get(this.subgoalIndex).getZ();
             double tol = this.positions.getPoint().get(this.subgoalIndex).getTolerance().doubleValue();
 
             if (Math.abs(targetx-sourcex) + Math.abs(targetz-sourcez) < tol)
@@ -88,9 +88,9 @@ public class ObservationFromSubgoalPositionListImplementation extends HandlerBas
         json.addProperty("yawDelta",  difference);
         PointWithToleranceAndDescription point = this.positions.getPoint().get(this.subgoalIndex);
         JsonObject pointElement = new JsonObject();
-        pointElement.addProperty("XPos", point.getX().doubleValue());
-        pointElement.addProperty("YPos", point.getY().doubleValue());
-        pointElement.addProperty("ZPos",  point.getZ().doubleValue());
+        pointElement.addProperty("XPos", (double) point.getX());
+        pointElement.addProperty("YPos", (double) point.getY());
+        pointElement.addProperty("ZPos",  (double) point.getZ());
         pointElement.addProperty("description", point.getDescription());
         json.add("nextSubgoal", pointElement);
     }

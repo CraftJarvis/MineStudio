@@ -118,12 +118,12 @@ public class ObservationFromGridImplementation extends ObservationFromServer
         for (GridDefinition gd : ogparams.getGrid())
         {
             SimpleGridDef sgd = new SimpleGridDef(
-                    gd.getMin().getX().intValue(),
-                    gd.getMin().getY().intValue(),
-                    gd.getMin().getZ().intValue(),
-                    gd.getMax().getX().intValue(),
-                    gd.getMax().getY().intValue(),
-                    gd.getMax().getZ().intValue(),
+                    (int) gd.getMin().getX(),
+                    (int) gd.getMin().getY(),
+                    (int) gd.getMin().getZ(),
+                    (int) gd.getMax().getX(),
+                    (int) gd.getMax().getY(),
+                    (int) gd.getMax().getZ(),
                     gd.getName(),
                     gd.isAbsoluteCoords(),
                     gd.isProjectDown(),

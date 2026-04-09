@@ -39,13 +39,13 @@ public class PositionHelper
 	 * @param targetPos the target position, specified as a Schema pos object
 	 * @return a float containing the Euclidean distance 'twixt player and target
 	 */
-	public static float calcDistanceFromPlayerToPosition(EntityPlayerSP player, Pos targetPos)
-	{
-	    double x = player.posX - targetPos.getX().doubleValue();
-	    double y = player.posY - targetPos.getY().doubleValue();
-	    double z = player.posZ - targetPos.getZ().doubleValue();
-	    return (float)Math.sqrt(x*x + y*y + z*z);
-	}
+    public static float calcDistanceFromPlayerToPosition(EntityPlayerSP player, Pos targetPos)
+    {
+        double x = player.posX - (double) targetPos.getX();
+        double y = player.posY - (double) targetPos.getY();
+        double z = player.posZ - (double) targetPos.getZ();
+        return (float)Math.sqrt(x*x + y*y + z*z);
+    }
 
 	public static List<BlockPos> getTouchingBlocks(EntityPlayerSP player)
 	{

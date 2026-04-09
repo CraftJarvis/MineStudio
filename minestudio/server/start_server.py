@@ -2,33 +2,65 @@ import rpyc
 from rpyc.utils.server import ThreadedServer
 import numpy as np
 from minestudio.simulator.entry import MinecraftSim
+import pickle
+
+def sanitize_data(obj):
+    """
+    更加健壮的递归清理函数，处理非字符串键和无法序列化的对象。
+    """
+    if isinstance(obj, dict):
+        new_dict = {}
+        for k, v in obj.items():
+            if isinstance(k, str) and k.startswith('_'):
+                continue
+            new_dict[k] = sanitize_data(v)
+        return new_dict
+    
+    elif isinstance(obj, (list, tuple)):
+        return [sanitize_data(x) for x in obj]
+    
+    elif isinstance(obj, np.ndarray):
+        return obj
+    
+    elif isinstance(obj, (int, float, str, bool, type(None))):
+        return obj
+    
+    else:
+        try:
+            return obj
+        except Exception:
+            return str(obj)
 
 class MinecraftService(rpyc.Service):
     def __init__(self):
         self.sim_instance = None
 
-    def on_connect(self, conn):
-        print(f"Client connected: {conn}")
+    def exposed_create_sim(self, *args, **kwargs):
+        self.sim_instance = MinecraftSim(*args, **kwargs)
+        return "SUCCESS" # 仅返回状态，不传输复杂对象
 
-    def on_disconnect(self, conn):
-        print(f"Client disconnected: {conn}")
-        # 安全机制：如果客户端断开连接（如脚本崩溃），自动关闭游戏进程
+    def exposed_reset(self):
+        if not self.sim_instance:
+            raise RuntimeError("Sim not initialized!")
+        obs, info = self.sim_instance.reset()
+        return sanitize_data(obs), sanitize_data(info)
+
+    def exposed_step(self, action):
+        obs, reward, terminated, truncated, info = self.sim_instance.step(action)
+        return sanitize_data(obs), reward, terminated, truncated, sanitize_data(info)
+    
+    def exposed_step_pickled(self, pickled_action):
+        action = pickle.loads(pickled_action)
+        obs, reward, terminated, truncated, info = self.sim_instance.step(action)
+        return sanitize_data(obs), reward, terminated, truncated, sanitize_data(info)
+
+    def exposed_close(self):
         if self.sim_instance:
-            print("Cleaning up Minecraft instance...")
-            try:
-                self.sim_instance.close()
-            except Exception as e:
-                print(f"Error during cleanup: {e}")
+            self.sim_instance.close()
             self.sim_instance = None
 
-    def exposed_create_sim(self, *args, **kwargs):
-        """客户端调用此方法来初始化真正的 MinecraftSim"""
-        print(f"Initializing MinecraftSim with args={args} kwargs={kwargs}")
-        self.sim_instance = MinecraftSim(*args, **kwargs)
-        return self.sim_instance
-
-    def exposed_get_sim(self):
-        return self.sim_instance
+    def exposed_get_spaces(self):
+        return self.sim_instance.action_space, self.sim_instance.observation_space
 
 if __name__ == "__main__":
     PORT = 18861

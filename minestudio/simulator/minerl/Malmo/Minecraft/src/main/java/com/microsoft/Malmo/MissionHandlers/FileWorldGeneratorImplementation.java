@@ -57,28 +57,34 @@ public class FileWorldGeneratorImplementation extends HandlerBase implements IWo
         if (this.mapFilename == null || this.mapFilename.length() == 0)
         {
             this.errorDetails = "No basemap URI provided - check your Mission XML.";
+            System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
             return false;
         }
         File mapSource = new File(this.mapFilename);
         if (!mapSource.exists())
         {
             this.errorDetails = "Basemap file " + this.mapFilename + " was not found - check your Mission XML and ensure the file exists on the Minecraft client machine.";
+            System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
             return false;
         }
         if (!mapSource.isDirectory())
         {
             this.errorDetails = "Basemap location " + this.mapFilename + " needs to be a folder. Check the path in your Mission XML.";
+            System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
             return false;
         }
         File mapCopy = MapFileHelper.copyMapFiles(mapSource, this.fwparams.isDestroyAfterUse());
+        
         if (mapCopy == null)
         {
             this.errorDetails = "Unable to copy " + this.mapFilename + " - is the hard drive full?";
+            System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
             return false;
         }
         if (!Minecraft.getMinecraft().getSaveLoader().canLoadWorld(mapCopy.getName()))
         {
             this.errorDetails = "Minecraft is unable to load " + this.mapFilename + " - is it a valid saved world?";
+            System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
             return false;
         }
 
@@ -91,6 +97,7 @@ public class FileWorldGeneratorImplementation extends HandlerBase implements IWo
         catch (AnvilConverterException anvilconverterexception)
         {
         	this.errorDetails = "Minecraft couldn't rebuild saved world list.";
+            System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
             return false;
         }
 
@@ -103,6 +110,7 @@ public class FileWorldGeneratorImplementation extends HandlerBase implements IWo
         if (newWorld == null)
         {
             this.errorDetails = "Minecraft could not find the copied world.";
+            System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
             return false;
         }
 
@@ -112,6 +120,7 @@ public class FileWorldGeneratorImplementation extends HandlerBase implements IWo
         if (worldName == null || !worldName.equals(newWorld.getDisplayName()))
         {
             this.errorDetails = "Minecraft could not load " + this.mapFilename + " - is it a valid saved world?";
+            System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
             return false;
         }
         MapFileHelper.cleanupTemporaryWorlds(mapCopy.getName());    // Now we are safely running a new file, we can attempt to clean up old ones.
@@ -140,6 +149,7 @@ public class FileWorldGeneratorImplementation extends HandlerBase implements IWo
     @Override
     public String getErrorDetails()
     {
+        System.out.println("WORLD LOAD ERROR: " + this.errorDetails);
         return this.errorDetails;
     }
 }

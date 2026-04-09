@@ -88,9 +88,9 @@ public class RandomizedStartDecoratorImplementation extends HandlerBase implemen
             BlockPos blockPos = new BlockPos(pos_d);
             BlockPos new_pos = PositionHelper.getTopSolidOrLiquidBlock(world, blockPos);
             System.out.println("Selected random start:" + new_pos.toString());
-            pos.setX(new BigDecimal(new_pos.getX() + 0.5));
-            pos.setY(new BigDecimal(new_pos.getY()));
-            pos.setZ(new BigDecimal(new_pos.getZ() + 0.5));
+            pos.setX((float) (new_pos.getX() + 0.5));
+            pos.setY((float) (new_pos.getY()));
+            pos.setZ((float) (new_pos.getZ() + 0.5));
             System.out.println("Set random start!");
                 
             this.startPosition = pos;
@@ -111,9 +111,9 @@ public class RandomizedStartDecoratorImplementation extends HandlerBase implemen
     public boolean getExtraAgentHandlersAndData(List<Object> handlers, Map<String, String> data)
     {
         // Also add our new start data:
-        Float x = this.startPosition.getX().floatValue();
-        Float y = this.startPosition.getY().floatValue();
-        Float z = this.startPosition.getZ().floatValue();
+        Float x = this.startPosition.getX();
+        Float y = this.startPosition.getY();
+        Float z = this.startPosition.getZ();
         String posString = x.toString() + ":" + y.toString() + ":" + z.toString();
         data.put("startPosition", posString);
 

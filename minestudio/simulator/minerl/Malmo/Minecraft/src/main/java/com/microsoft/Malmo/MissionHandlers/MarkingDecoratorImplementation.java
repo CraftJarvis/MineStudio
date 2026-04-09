@@ -66,15 +66,15 @@ public class MarkingDecoratorImplementation extends HandlerBase implements IWorl
 	@Override
 	public void buildOnWorld(MissionInit missionInit, World world) throws DecoratorException {
 		if (nparams.getOrigin() != null)
-			originX = nparams.getOrigin().getX().doubleValue();
+			originX = (double) nparams.getOrigin().getX();
 		else
 			originX = world.getSpawnPoint().getX();
 		if (nparams.getOrigin() != null)
-			originY = nparams.getOrigin().getY().doubleValue();
+			originY = (double) nparams.getOrigin().getY();
 		else
 			originY = world.getSpawnPoint().getY();
 		if (nparams.getOrigin() != null)
-			originZ = nparams.getOrigin().getZ().doubleValue();
+			originZ = (double) nparams.getOrigin().getZ();
 		else
 			originZ = world.getSpawnPoint().getZ();
 
@@ -145,9 +145,9 @@ public class MarkingDecoratorImplementation extends HandlerBase implements IWorl
         // Force all players to being at a random starting position
         for (AgentSection as : missionInit.getMission().getAgentSection())
         {
-            pos.setX(new BigDecimal(placementX + 0.5));
-            pos.setY(new BigDecimal(placementY));
-            pos.setZ(new BigDecimal(placementZ + 0.5));
+            pos.setX((float) ((placementX + 0.5)));
+            pos.setY((float) (placementY));
+            pos.setZ((float) ((placementZ + 0.5)));
 
             this.startPosition = pos;
             as.getAgentStart().setPlacement(pos);
@@ -157,9 +157,9 @@ public class MarkingDecoratorImplementation extends HandlerBase implements IWorl
 	@Override
 	public boolean getExtraAgentHandlersAndData(List<Object> handlers, Map<String, String> data) {
         // Also add our new start data:
-        Float x = this.startPosition.getX().floatValue();
-        Float y = this.startPosition.getY().floatValue();
-        Float z = this.startPosition.getZ().floatValue();
+        Float x = this.startPosition.getX();
+        Float y = this.startPosition.getY();
+        Float z = this.startPosition.getZ();
         String posString = x.toString() + ":" + y.toString() + ":" + z.toString();
         data.put("startPosition", posString);
 

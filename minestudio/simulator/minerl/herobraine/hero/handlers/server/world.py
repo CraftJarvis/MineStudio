@@ -30,24 +30,41 @@ class DefaultWorldGenerator(Handler):
         self.generator_options = generator_options
 
 
-class FileWorldGenerator(Handler):
-    """Generates a world from a file."""
+# class FileWorldGenerator(Handler):
+#     """Generates a world from a file."""
 
+#     def to_string(self) -> str:
+#         return "file_world_generator"
+
+#     def xml_template(self) -> str:
+#         return str(
+#             """<FileWorldGenerator
+#                 destroyAfterUse = "{{destroy_after_use | string | lower}}"
+#                 src = "{{filename}}" />
+#             """
+#         )
+
+#     def __init__(self, filename: str, destroy_after_use: bool = True):
+#         self.filename = filename
+#         self.destroy_after_use = destroy_after_use
+
+import os
+class FileWorldGenerator(Handler):
     def to_string(self) -> str:
         return "file_world_generator"
 
     def xml_template(self) -> str:
-        return str(
-            """<FileWorldGenerator
-                destroyAfterUse = "{{destroy_after_use | string | lower}}"
-                src = "{{filename}}" />
-            """
-        )
+        return """
+        <FileWorldGenerator
+            src="{{filename}}"
+            forceReset="{{force_reset | string | lower}}"
+            destroyAfterUse="{{destroy_after_use | string | lower}}" />
+        """
 
-    def __init__(self, filename: str, destroy_after_use: bool = True):
-        self.filename = filename
+    def __init__(self, filename: str, force_reset: bool = True, destroy_after_use: bool = False):
+        self.filename = os.path.abspath(os.path.expanduser(filename))
+        self.force_reset = force_reset
         self.destroy_after_use = destroy_after_use
-
 
 #  <FlatWorldGenerator forceReset="true"/>
 class FlatWorldGenerator(Handler):

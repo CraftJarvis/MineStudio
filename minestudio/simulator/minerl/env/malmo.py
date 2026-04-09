@@ -175,7 +175,7 @@ class InstanceManager:
             raise TypeError("Seed type {} does not support getting next seed".format(cls._seed_type))
 
     @classmethod
-    def get_instance(cls, pid, instance_id=None):
+    def get_instance(cls, pid, instance_id=None, load_filename=None):
         """
         Gets an instance from the instance manager. This method is a context manager
         and therefore when the context is entered the method yields a InstanceManager.Instance
@@ -221,7 +221,7 @@ class InstanceManager:
                 print(_result.stderr)
                 raise Exception("An error occured in gpu_utils.py.")
 
-            inst = MinecraftInstance(port=cls._get_valid_port(), minecraft_dir=cls.MINECRAFT_DIR, instance_id=instance_id, working_dir=base_dir, device=device)
+            inst = MinecraftInstance(port=cls._get_valid_port(), minecraft_dir=cls.MINECRAFT_DIR, instance_id=instance_id, working_dir=base_dir, device=device, load_filename=load_filename,)
 
             cls._instance_pool.append(inst)
             inst._acquire_lock(pid)
@@ -252,9 +252,9 @@ class InstanceManager:
         cls.shutdown()
 
     @classmethod
-    def add_existing_instance(cls, port):
+    def add_existing_instance(cls, port, load_filename=None):
         assert cls._is_port_taken(port), "No Malmo mod utilizing the port specified."
-        instance = MinecraftInstance(port=port, existing=True)
+        instance = MinecraftInstance(port=port, existing=True, load_filename=load_filename)
         cls._instance_pool.append(instance)
         cls.ninstances += 1
         return instance
@@ -348,7 +348,7 @@ class MinecraftInstance(object):
     MAX_PIPE_LENGTH = 500
 
     def __init__(self, working_dir: str, port=None, existing=False, seed=None, instance_id=None, max_mem=None,
-                 minecraft_dir=None, device=None):
+                 minecraft_dir=None, device=None, load_filename=None):
         """
         Launches the subprocess.
 
@@ -373,6 +373,8 @@ class MinecraftInstance(object):
         self.minecraft_dir = minecraft_dir
 
         self.instance_id = instance_id
+        self.load_filename = load_filename
+
 
         # Try to set the seed for the instance using the instance manager's override.
         try:
@@ -415,7 +417,12 @@ class MinecraftInstance(object):
             #                 ignore=shutil.ignore_patterns('cache.properties.lock'))
             # shutil.copytree(os.path.join(InstanceManager.SCHEMAS_DIR), os.path.join(self.instance_dir, 'Malmo', 'Schemas'))
             # self.minecraft_dir = InstanceManager.MINECRAFT_DIR
+
+
             shutil.copytree(InstanceManager.RUNTIME_DIR, self.working_dir, dirs_exist_ok=True)
+
+            if self.load_filename is not None:
+                self._inject_saved_world(self.load_filename)
 
             # 1. Launch minecraft process and 
             self.minecraft_process = self._launch_minecraft(
@@ -619,6 +626,26 @@ class MinecraftInstance(object):
                                          )
         
         return minecraft_process
+    
+    def _inject_saved_world(self, load_filename: str):
+        import os
+        import shutil
+
+        src = os.path.abspath(load_filename)
+        if not os.path.exists(src):
+            raise FileNotFoundError(f"load_filename does not exist: {src}")
+
+        saves_dir = os.path.join(self.working_dir, "saves")
+        os.makedirs(saves_dir, exist_ok=True)
+
+        world_name = os.path.basename(os.path.normpath(src))
+        dst = os.path.join(saves_dir, world_name)
+
+        if os.path.exists(dst):
+            shutil.rmtree(dst)
+
+        shutil.copytree(src, dst)
+        print(f"[MinecraftInstance] injected world: {src} -> {dst}")
 
     @staticmethod
     def _kill_minecraft_via_malmoenv(host, port):

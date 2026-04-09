@@ -63,8 +63,8 @@ public class AnimationDecoratorImplementation extends HandlerBase implements IWo
         if (this.params.getLinear() != null)
         {
             Linear linear = this.params.getLinear();
-            this.origin = new Vec3d(linear.getInitialPos().getX().doubleValue(), linear.getInitialPos().getY().doubleValue(), linear.getInitialPos().getZ().doubleValue());
-            this.velocity = new Vec3d(linear.getInitialVelocity().getX().doubleValue(), linear.getInitialVelocity().getY().doubleValue(), linear.getInitialVelocity().getZ().doubleValue());
+            this.origin = new Vec3d((double) linear.getInitialPos().getX(), (double) linear.getInitialPos().getY(), (double) linear.getInitialPos().getZ());
+            this.velocity = new Vec3d((double) linear.getInitialVelocity().getX(), (double) linear.getInitialVelocity().getY(), (double) linear.getInitialVelocity().getZ());
             this.minCanvas = new Vec3d(linear.getCanvasBounds().getMin().getX(), linear.getCanvasBounds().getMin().getY(), linear.getCanvasBounds().getMin().getZ());
             this.maxCanvas = new Vec3d(linear.getCanvasBounds().getMax().getX(), linear.getCanvasBounds().getMax().getY(), linear.getCanvasBounds().getMax().getZ());
         }
