@@ -115,8 +115,6 @@ class WorldCheckpointCallback(MinecraftCallback):
 
 
         export_path = self.export_now(sim, tag="final", live=False)
-        import pdb
-        pdb.set_trace()
         self._log(f"[Checkpoint] final export before close -> {export_path}")
         
 
@@ -133,7 +131,8 @@ class WorldCheckpointCallback(MinecraftCallback):
         reply = comms.recv_message(inst.client_socket)
         for i in range(30):
             sim.step(sim.noop_action(), no_callback=True)  # 确保 SaveWorld 消息被处理
-            time.sleep(1)
+            time.sleep(0.1) #应该是没用的
+
         print(f"[Checkpoint] SaveWorld reply: {reply.decode('utf-8')}")
 
         if self.active_world_path is not None:

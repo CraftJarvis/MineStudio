@@ -22,7 +22,8 @@ if __name__ == '__main__':
         export_every_n_steps=None,
         overwrite=True,
         verbose=True,
-    ) #现在版本里这些参数基本就auto export on close 设置成true会存checkpoint，其他都待实现...实际上的checkpoint路径在log里查 “[IOWorker]” 这个字符串就找到了，world结尾。 这个是负责save的
+    ) 
+    #现在版本里这些参数基本就auto export on close 设置成true会存checkpoint，其他都待实现...，export root先无视就好了，实际上的checkpoint路径在log里查 “[IOWorker]” 这个字符串就找到了，world结尾。 这个是负责save的   //好像不开也会默认自动保存？
     
     env = MinecraftSim(
         obs_size=(128, 128), 
