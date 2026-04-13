@@ -190,3 +190,6 @@ logs
 
 # macOS
 .DS_Store
+mcprec-6.13.jar
+mcprec-6.13_COPY.jar
+engine/build/libs/*.jar

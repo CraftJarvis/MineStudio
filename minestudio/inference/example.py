@@ -17,12 +17,12 @@ if __name__ == '__main__':
     ).to("cuda")
 
     ckpt_cb = WorldCheckpointCallback(
-        export_root="/scratch/hekaichen/checkpoints/minecraft_worlds",
+        export_root="/nfs-shared-2/hekaichen/workspace/tmp/saves",
         auto_export_on_close=True,
         export_every_n_steps=None,
         overwrite=True,
         verbose=True,
-    ) 
+    )
     #现在版本里这些参数基本就auto export on close 设置成true会存checkpoint，其他都待实现...，export root先无视就好了，实际上的checkpoint路径在log里查 “[IOWorker]” 这个字符串就找到了，world结尾。 这个是负责save的   //好像不开也会默认自动保存？
     
     env = MinecraftSim(
@@ -31,9 +31,9 @@ if __name__ == '__main__':
         callbacks=[
             RecordCallback(record_path="./output", fps=30, frame_type="pov"),
             SpeedTestCallback(50),
-            ckpt_cb,
+            ckpt_cb
         ],
-        restore_checkpoint_path="/tmp/4785ceae4906/saves/world" #"/nfs-shared-2/hekaichen/workspace/tmp/world_fix1", 这里目录下直接包含advancements  data  datapacks  DIM-1  DIM1  icon.png  level.dat  level.dat_old  playerdata  poi  region  session.lock  stats   这个负责load
+        restore_checkpoint_path="/nfs-shared-2/hekaichen/workspace/tmp/saves/world_final_20260414-042914/world" #"/nfs-shared-2/hekaichen/workspace/tmp/world_fix1", 这里目录下直接包含advancements  data  datapacks  DIM-1  DIM1  icon.png  level.dat  level.dat_old  playerdata  poi  region  session.lock  stats   这个负责load
     )
 
     memory = None
