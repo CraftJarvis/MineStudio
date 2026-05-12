@@ -166,9 +166,6 @@ class WorldCheckpointCallback(MinecraftCallback):
         inst = self._get_instance(sim)
         working_dir = Path(inst.working_dir)
 
-        import pdb
-        pdb.set_trace()
-
         return {
             "working_dir": str(working_dir),
             "world_name": world_path.name,

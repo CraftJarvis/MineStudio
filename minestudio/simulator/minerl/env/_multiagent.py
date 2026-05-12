@@ -636,9 +636,9 @@ class _MultiAgentEnv(gym.Env):
             #mission_xml = etree.tostring(mission_xml_etree)
 
             mission_xml = etree.tostring(mission_xml_etree, pretty_print=True, encoding="utf-8")
-            print("===== FINAL MISSION XML =====")
-            print(mission_xml.decode("utf-8"))
-            print("===== END MISSION XML =====")
+            # print("===== FINAL MISSION XML =====")
+            # print(mission_xml.decode("utf-8"))
+            # print("===== END MISSION XML =====")
 
             token = (
                     token_in

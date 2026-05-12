@@ -33,7 +33,7 @@ if __name__ == '__main__':
             SpeedTestCallback(50),
             ckpt_cb
         ],
-        restore_checkpoint_path="/nfs-shared-2/hekaichen/workspace/tmp/saves/world_final_20260414-042914/world" #"/nfs-shared-2/hekaichen/workspace/tmp/world_fix1", 这里目录下直接包含advancements  data  datapacks  DIM-1  DIM1  icon.png  level.dat  level.dat_old  playerdata  poi  region  session.lock  stats   这个负责load
+        #restore_checkpoint_path="/nfs-shared-2/hekaichen/workspace/tmp/saves/world_final_20260414-042914/world" #"/nfs-shared-2/hekaichen/workspace/tmp/world_fix1", 这里目录下直接包含advancements  data  datapacks  DIM-1  DIM1  icon.png  level.dat  level.dat_old  playerdata  poi  region  session.lock  stats   这个负责load   可以是None，则变回默认配置
     )
 
     memory = None
