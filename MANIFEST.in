@@ -1,0 +1,7 @@
+include CONTRIBUTING.md mkdocs.yml
+include .github/workflows/v2-ci.yml
+graft docs
+graft examples
+graft tests
+global-exclude *.py[cod] .DS_Store
+prune docs/_build

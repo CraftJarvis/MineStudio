@@ -1,0 +1,71 @@
+name: v2 checks
+on:
+  pull_request:
+  push:
+    branches: [master, 'codex/**', v2.0.0]
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -e '.[dev]' gymnasium
+      - name: Install video tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pyright --pythonpath $(which python)
+      - run: python -m pytest -q
+      - run: python examples/v2/local_rollout.py
+      - run: python examples/v2/task_evaluation.py --output-dir runs/task-demo --video
+      - run: python -m build
+      - name: Install wheel outside the source tree
+        shell: bash
+        run: |
+          python -m venv /tmp/minestudio-wheel
+          /tmp/minestudio-wheel/bin/python -m pip install dist/*.whl
+          cd /tmp
+          /tmp/minestudio-wheel/bin/python -c 'import minestudio; from minestudio.rollout import RolloutRunner; from minestudio.data import TrajectoryReader; from minestudio.evaluation import evaluate; from minestudio.tasks import load_task; from importlib.resources import files; assert load_task("collect_oak_log").version == "1"; assert (files("minestudio") / "simulator/minerl/herobraine/hero/mission.xml.j2").is_file()'
+          /tmp/minestudio-wheel/bin/minestudio doctor
+          /tmp/minestudio-wheel/bin/minestudio task collect_oak_log
+      - uses: actions/upload-artifact@v4
+        if: matrix.python == '3.12'
+        with:
+          name: minestudio-v2-task-demo
+          path: runs/task-demo/
+      - uses: actions/upload-artifact@v4
+        if: matrix.python == '3.12'
+        with:
+          name: minestudio-v2-dist
+          path: dist/*
+  policy-and-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -e '.[dev,policies,envs]'
+      - run: python -c 'import torch, cv2, gym3, safetensors, gym, rich, diskcache, Pyro4, lxml, daemoniker'
+      - run: python -m pytest tests/integration/test_vpt.py tests/integration/test_vpt_codec_reference.py tests/integration/test_minerl_import.py -q
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e '.[docs]'
+      - run: mkdocs build --strict
+      - uses: actions/upload-artifact@v4
+        with:
+          name: minestudio-v2-docs
+          path: site/

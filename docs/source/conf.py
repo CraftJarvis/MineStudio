@@ -18,7 +18,7 @@ sys.path.append(str(Path(".").resolve()))
 
 from custom_directives import generate_versions_json
 
-sys.path.insert(0, os.path.abspath('../../'))
+sys.path.insert(0, os.path.abspath('../../src'))
 
 project = 'MineStudio'
 copyright = str(datetime.now().year) + ", The CraftJarvis Team"
@@ -63,7 +63,7 @@ source_suffix = {
     '.md': 'markdown',
 }
 
-sys.path.insert(0, os.path.abspath('../minestudio'))
+sys.path.insert(0, os.path.abspath('../../src/minestudio'))
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -119,7 +119,7 @@ html_js_files = [
 
 # -- auto api ----------------------------------------------------------------
 autoapi_add_toctree_entry = False
-autoapi_dirs = ['../../minestudio']
+autoapi_dirs = ['../../src/minestudio']
 autoapi_ignore = ['*minerl*', '*tests*', '*tutorials*', '*utils*']
 
 autodoc_mock_imports = ['torch', 'absl', 'cv2', 'huggingface_hub', 'lmdb', 'gymnasium', 'lightning', 'omegaconf', 'tree', 'einops', 'gym', 'gym3', 'coloredlogs', 'daemoniker', 'av', 'minecraft_data', 'torchvision', 'timm', 'transformers', 'x_transformers', 'tqdm']

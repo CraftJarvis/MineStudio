@@ -178,8 +178,8 @@ reference_videos/
 downloads/
 custom/
 
-minestudio/models/realtime_sam/notebooks/*.jpg
-minestudio/models/realtime_sam/checkpoints/*.pt
+src/minestudio/models/realtime_sam/notebooks/*.jpg
+src/minestudio/models/realtime_sam/checkpoints/*.pt
 
 outputs
 output
@@ -190,3 +190,8 @@ logs
 
 # macOS
 .DS_Store
+.ruff_cache/
+
+.venv-stage2/
+.venv-stage2-gpu/
+runs/

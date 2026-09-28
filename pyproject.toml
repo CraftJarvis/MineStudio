@@ -1,72 +1,85 @@
 [build-system]
-requires = ["setuptools>=42", "wheel", "setuptools-scm[toml]>=6.0"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "minestudio"
-version = "1.1.5"
-description = "A simple and efficient Minecraft Agent development kit for AI research."
-dependencies = [
-    "av==13.1.0",
-    "opencv-python==4.8.0.74",
-    "opencv-python-headless==4.8.0.74",
-    "setuptools",
-    "tqdm",
-    "numpy",
-    "requests",
-    "ipython",
-    "typing",
-    "gym",
-    "gym3",
-    "gymnasium",
-    "hydra_colorlog",
-    "hydra-core>=1.3.2",
-    "lmdb",
-    "wandb",
-    "torch>=2.3.1",
-    "lightning",
-    "scipy",
-    "rich",
-    "coloredlogs",
-    "daemoniker",
-    "lxml",
-    "cuda-python; platform_system!='Darwin'",  # Exclude on macOS  
-    "diskcache",
-    "albumentations",
-    "einops",
-    "timm",
-    "transformers",
-    "Pyro4",
-    "xmltodict",
-    "pyrender==0.1.25",
-    "pyglet",
-    "imgui",
-    "pyopengl",
-    "ray",
-    "minecraft_data==3.20.0",
-    "absl-py",
-    "dm-tree",
-    "x_transformers==0.27.1",
-]
+version = "2.0.0a2"
+description = "Composable tools for Minecraft agent research."
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
 authors = [{ name = "CraftJarvis", email = "craftjarvis@outlook.com" }]
-requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "src/minestudio/**/LICENSE*", "src/minestudio/**/license"]
+dependencies = ["numpy>=1.24,<2"]
 
-[tool.setuptools]
-packages = ["minestudio"]
-include-package-data = true
+[project.optional-dependencies]
+tasks = ["PyYAML>=6,<7"]
+envs = [
+    "gymnasium>=0.29,<2", "gym==0.26.2", "opencv-python-headless>=4.8,<4.12",
+    "rich", "coloredlogs", "lxml", "Pyro4", "xmltodict", "psutil", "jinja2",
+    "daemoniker", "requests", "diskcache", "minecraft_data==3.20.0", "absl-py", "typing_extensions",
+]
+policies = [
+    "torch>=2.3.1,<3", "gymnasium>=0.29,<2", "gym==0.26.2", "gym3",
+    "opencv-python-headless>=4.8,<4.12", "einops", "rich", "absl-py", "safetensors",
+]
+data = ["lmdb", "av>=13,<14", "opencv-python-headless>=4.8,<4.12"]
+train = ["minestudio[policies,data]", "hydra-core>=1.3.2", "lightning", "wandb"]
+distributed = ["ray"]
+gui = ["pyglet<2", "imgui", "pyopengl"]
+legacy = [
+    "minestudio[envs,policies,data,train,distributed,gui]", "huggingface-hub", "tqdm",
+    "ipython", "hydra_colorlog", "scipy", "diskcache", "albumentations", "timm",
+    "transformers", "pyrender==0.1.25", "dm-tree", "x_transformers==0.27.1",
+    "cuda-python; platform_system!='Darwin'",
+]
+dev = ["pytest>=8,<10", "attrs", "PyYAML>=6,<7", "ruff==0.16.9", "pyright==1.1.414", "build"]
+docs = ["mkdocs-material>=9.5,<10", "mkdocstrings[python]>=0.26", "mkdocs-autorefs"]
 
-[tool.setuptools-scm]
-version_scheme = "post-release"
-local_scheme = "node-and-timestamp"
-include = ".gitignore"
+[project.scripts]
+minestudio = "minestudio.cli.main:main"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["minestudio*"]
+namespaces = true
 
-[tool.setuptools.dynamic]
-readme = { file = "README.md" }
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.xml", "*.xsd", "*.j2", "*.jinja", "*.jinja2", "*.yaml", "*.yml", "*.txt", "*.csv", "*.sh", "*.toml", "*.ini", "*.obj", "*.mtl", "*.png", "*.ttf", "*.md", "*.html", "*.properties", "*.npz", "*.cfg", "*.gif", "*.in", "*.java", "*.gradle", "*.bat", "*.vsh", "*.fsh", "*.lang", "*.compat", "*.info", "*.index", "gradlew", "CMakeLists.txt", "LICENSE*", "license", "VERSION", "size", "*.mD", "*.cu"]
+minestudio = ["py.typed"]
 
 [tool.pytest.ini_options]
-addopts = ["--import-mode=importlib"]
+testpaths = ["tests/unit", "tests/integration"]
+addopts = ["--import-mode=importlib", "-ra"]
+markers = ["engine: requires Minecraft engine and display", "torch: requires policy dependencies"]
 
-[[tool.poetry.source]]
-name = "ali"
-url = "https://mirrors.aliyun.com/pypi/simple/"
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+include = [
+    "src/minestudio/__init__.py", "src/minestudio/core/**/*.py",
+    "src/minestudio/actions/**/*.py", "src/minestudio/envs/**/*.py",
+    "src/minestudio/policies/**/*.py", "src/minestudio/rollout/**/*.py",
+    "src/minestudio/cli/**/*.py", "src/minestudio/tasks/**/*.py", "src/minestudio/data/storage/**/*.py", "src/minestudio/evaluation/**/*.py", "tests/unit/**/*.py", "tests/integration/**/*.py", "tests/e2e/**/*.py",
+    "examples/v2/**/*.py",
+    "src/minestudio/simulator/minerl/env/gpu_utils.py",
+]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/minestudio/policies/vpt/_network.py" = ["E", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.format]
+exclude = ["src/minestudio/policies/vpt/_network.py"]
+
+[tool.pyright]
+pythonVersion = "3.10"
+venvPath = "."
+venv = ".venv-stage2"
+include = ["src/minestudio/core", "src/minestudio/actions", "src/minestudio/envs", "src/minestudio/policies/protocols.py", "src/minestudio/policies/vpt/config.py", "src/minestudio/rollout", "src/minestudio/cli", "src/minestudio/tasks", "src/minestudio/data/storage", "src/minestudio/evaluation"]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportUnnecessaryIsInstance = false

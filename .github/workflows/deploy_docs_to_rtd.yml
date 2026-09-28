@@ -1,12 +1,7 @@
 name: Deploy the docs to RTD
 
 on:
-  push:
-    branches: [master]
-    paths: # 当更改以下文件时，会触发Actions更新文档
-      - "minestudio/**"
-      - "docs/**"
-      - ".github/workflows/deploy_docs_to_rtd.yml"
+  workflow_dispatch:
 
 env:
   REPO_SSH: git@github.com:CraftJarvis/MineStudio.git

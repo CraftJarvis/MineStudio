@@ -1,0 +1,104 @@
+site_name: MineStudio
+site_description: Minecraft 智能体研究，从第一个动作到可复现的实验。
+site_url: https://craftjarvis.github.io/MineStudio/
+repo_url: https://github.com/CraftJarvis/MineStudio
+repo_name: CraftJarvis/MineStudio
+docs_dir: docs
+site_dir: site
+validation:
+  links:
+    anchors: warn
+exclude_docs: |
+  source/
+  legacy/
+  Makefile
+  make.bat
+  requirements.txt
+theme:
+  name: material
+  language: zh
+  font: false
+  icon:
+    logo: material/cube-outline
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: 切换深色模式
+    - scheme: slate
+      primary: teal
+      accent: light green
+      toggle:
+        icon: material/weather-sunny
+        name: 切换浅色模式
+plugins:
+  - search:
+      lang: [en, zh]
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_source: false
+            show_root_heading: true
+            docstring_style: google
+            members_order: source
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+extra_css:
+  - stylesheets/extra.css
+nav:
+  - 首页: index.md
+  - 开始使用:
+      - 安装与诊断: getting-started/installation.md
+      - 第一个实验: getting-started/quickstart.md
+  - 使用指南:
+      - 环境与动作: guides/environments.md
+      - 策略与模型: guides/policies.md
+      - 定义任务: guides/tasks.md
+      - 采样与记录: guides/rollout.md
+      - 读取与恢复轨迹: guides/trajectories.md
+      - 固定种子评测: guides/evaluation.md
+  - API:
+      - 公共入口: reference/index.md
+      - 核心类型: reference/core.md
+      - 环境: reference/envs.md
+      - 策略: reference/policies.md
+      - 任务: reference/tasks.md
+      - 采样: reference/rollout.md
+      - 轨迹存储: reference/data.md
+      - 评测: reference/evaluation.md
+  - 开发与迁移:
+      - v2 架构规范: architecture/v2.md
+      - 产物格式: architecture/artifact-formats.md
+      - 实现进度: architecture/progress.md
+      - 阶段二验证记录: architecture/stage2-validation.md
+      - GPU 与轨迹行为验证: architecture/gpu-validation.md
+      - 从 v1 迁移: migration/v1-to-v2.md

@@ -1,0 +1,17 @@
+{
+  "id": "collect_oak_log",
+  "version": "1",
+  "instruction": "Collect one additional oak log.",
+  "initialization": [
+    {"kind": "command", "version": 1, "command": "/time set day"},
+    {"kind": "command", "version": 1, "command": "/weather clear"}
+  ],
+  "rewards": [
+    {"id": "oak_log", "metric": ["metrics", "inventory", "oak_log"], "missing": "zero", "reward_per_unit": 1.0}
+  ],
+  "success": [
+    {"metric": ["metrics", "inventory", "oak_log"], "threshold": 1, "relative": true, "missing": "zero"}
+  ],
+  "failure": [],
+  "max_episode_steps": 1200
+}
