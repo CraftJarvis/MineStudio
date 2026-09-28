@@ -11,8 +11,8 @@
 </div>
 
 !!! info "当前版本：2.0.0a2"
-    任务、轨迹读写、视频和评测已实现；Linux CPU 上的真实 Minecraft/VPT 短程采样与 1x 发布权重对照已通过。
-    训练、历史数据迁移和分布式执行仍在后续阶段。[查看验证范围](architecture/stage2-validation.md)。
+    任务、轨迹读写、视频和评测已实现；真实 Minecraft、CPU/CUDA VPT 推理与 H800 GPU 渲染均已验证。
+    训练、历史数据迁移和分布式执行仍在后续阶段。[查看验证范围](architecture/stage2-validation.md)与[轨迹行为分析](architecture/gpu-validation.md)。
 
 <div class="ms-cards" markdown>
 <div class="ms-card" markdown>

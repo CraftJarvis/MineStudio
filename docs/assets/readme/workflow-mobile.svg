@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="658" viewBox="0 0 420 658" role="img" aria-labelledby="title desc">
+<title id="title">The MineStudio v2 research workflow</title>
+<desc id="desc">Define tasks and policies, run Minecraft, record trajectories and video, then evaluate fixed task and seed cases.</desc>
+<style>
+.bg{fill:#f6f8fc}.card{fill:#fff;stroke:#dfe5ef}.title{fill:#192c45}.muted{fill:#4d617d}.arrow{stroke:#9aa9bd;fill:none;stroke-width:2}
+text{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+@media(prefers-color-scheme:dark){.bg{fill:#121b2b}.card{fill:#1d2a40;stroke:#35445a}.title{fill:#f0f4fb}.muted{fill:#bccbe0}.arrow{stroke:#7d8ea9}}
+</style>
+<rect class="bg" width="420" height="658" rx="20"/>
+<text class="muted" x="28" y="35" font-size="14" font-weight="600" letter-spacing="1.2">THE V2 RESEARCH WORKFLOW</text>
+<path class="arrow" d="M210 191v13m-5 -5 5 5 5-5"/>
+<rect class="card" x="28" y="62" width="364" height="124" rx="12"/>
+<rect x="28" y="79" width="4" height="28" rx="2" fill="#408cd8"/>
+<text x="46" y="93" fill="#408cd8" font-size="12" font-weight="700">01</text>
+<text class="title" x="46" y="125" font-size="25" font-weight="650">Define</text>
+<text class="muted" x="46" y="150" font-size="15">Tasks + policies</text>
+<path class="arrow" d="M210 336v13m-5 -5 5 5 5-5"/>
+<rect class="card" x="28" y="207" width="364" height="124" rx="12"/>
+<rect x="28" y="224" width="4" height="28" rx="2" fill="#8570cd"/>
+<text x="46" y="238" fill="#8570cd" font-size="12" font-weight="700">02</text>
+<text class="title" x="46" y="270" font-size="25" font-weight="650">Run</text>
+<text class="muted" x="46" y="295" font-size="15">Minecraft + CUDA</text>
+<path class="arrow" d="M210 481v13m-5 -5 5 5 5-5"/>
+<rect class="card" x="28" y="352" width="364" height="124" rx="12"/>
+<rect x="28" y="369" width="4" height="28" rx="2" fill="#239888"/>
+<text x="46" y="383" fill="#239888" font-size="12" font-weight="700">03</text>
+<text class="title" x="46" y="415" font-size="25" font-weight="650">Record</text>
+<text class="muted" x="46" y="440" font-size="15">Trajectories + video</text>
+<rect class="card" x="28" y="497" width="364" height="124" rx="12"/>
+<rect x="28" y="514" width="4" height="28" rx="2" fill="#bb8740"/>
+<text x="46" y="528" fill="#bb8740" font-size="12" font-weight="700">04</text>
+<text class="title" x="46" y="560" font-size="25" font-weight="650">Evaluate</text>
+<text class="muted" x="46" y="585" font-size="15">Seeds + reports</text>
+</svg>

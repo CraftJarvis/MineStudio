@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="238" viewBox="0 0 960 238" role="img" aria-labelledby="title desc">
+<title id="title">The MineStudio v2 research workflow</title>
+<desc id="desc">Define tasks and policies, run Minecraft, record trajectories and video, then evaluate fixed task and seed cases.</desc>
+<style>
+.bg{fill:#f6f8fc}.card{fill:#fff;stroke:#dfe5ef}.title{fill:#192c45}.muted{fill:#4d617d}.arrow{stroke:#9aa9bd;fill:none;stroke-width:2}
+text{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+@media(prefers-color-scheme:dark){.bg{fill:#121b2b}.card{fill:#1d2a40;stroke:#35445a}.title{fill:#f0f4fb}.muted{fill:#bccbe0}.arrow{stroke:#7d8ea9}}
+</style>
+<rect class="bg" width="960" height="238" rx="20"/>
+<text class="muted" x="28" y="35" font-size="14" font-weight="600" letter-spacing="1.2">THE V2 RESEARCH WORKFLOW</text>
+<path class="arrow" d="M237 134.5h18m-5 -5 5 5-5 5"/>
+<rect class="card" x="28" y="62" width="202" height="145" rx="12"/>
+<rect x="28" y="79" width="4" height="28" rx="2" fill="#408cd8"/>
+<text x="46" y="93" fill="#408cd8" font-size="12" font-weight="700">01</text>
+<text class="title" x="46" y="125" font-size="25" font-weight="650">Define</text>
+<text class="muted" x="46" y="150" font-size="15">Tasks + policies</text>
+<text class="muted" x="46" y="182" font-size="10.5">TaskSpec · Policy</text>
+<path class="arrow" d="M471 134.5h18m-5 -5 5 5-5 5"/>
+<rect class="card" x="262" y="62" width="202" height="145" rx="12"/>
+<rect x="262" y="79" width="4" height="28" rx="2" fill="#8570cd"/>
+<text x="280" y="93" fill="#8570cd" font-size="12" font-weight="700">02</text>
+<text class="title" x="280" y="125" font-size="25" font-weight="650">Run</text>
+<text class="muted" x="280" y="150" font-size="15">Minecraft + CUDA</text>
+<text class="muted" x="280" y="182" font-size="10.5">MinecraftEnv · RolloutRunner</text>
+<path class="arrow" d="M705 134.5h18m-5 -5 5 5-5 5"/>
+<rect class="card" x="496" y="62" width="202" height="145" rx="12"/>
+<rect x="496" y="79" width="4" height="28" rx="2" fill="#239888"/>
+<text x="514" y="93" fill="#239888" font-size="12" font-weight="700">03</text>
+<text class="title" x="514" y="125" font-size="25" font-weight="650">Record</text>
+<text class="muted" x="514" y="150" font-size="15">Trajectories + video</text>
+<text class="muted" x="514" y="182" font-size="10.5">TrajectoryWriter · MP4</text>
+<rect class="card" x="730" y="62" width="202" height="145" rx="12"/>
+<rect x="730" y="79" width="4" height="28" rx="2" fill="#bb8740"/>
+<text x="748" y="93" fill="#bb8740" font-size="12" font-weight="700">04</text>
+<text class="title" x="748" y="125" font-size="25" font-weight="650">Evaluate</text>
+<text class="muted" x="748" y="150" font-size="15">Seeds + reports</text>
+<text class="muted" x="748" y="182" font-size="10.5">EvaluationSuite · JSON</text>
+</svg>
