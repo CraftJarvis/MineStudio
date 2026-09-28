@@ -20,8 +20,8 @@ pass `pyright --pythonpath /path/to/python`. Install optional dependencies for t
 affected areas, then run their checks:
 
 ```bash
-python -m pip install -e '.[envs,policies,docs]'
-python -m pytest tests/integration/test_vpt.py tests/integration/test_minerl_import.py -q
+python -m pip install -e '.[envs,policies,data,docs]'
+python -m pytest tests/integration/test_vpt.py tests/integration/test_bc.py tests/integration/test_legacy_dataset.py tests/integration/test_ppo.py tests/integration/test_minerl_import.py -q
 python examples/v2/task_evaluation.py --output-dir runs/task-video --video
 mkdocs build --strict
 ```

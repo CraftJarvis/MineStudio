@@ -25,12 +25,12 @@ policies = [
     "opencv-python-headless>=4.8,<4.12", "einops", "rich", "absl-py", "safetensors",
 ]
 data = ["lmdb", "av>=13,<14", "opencv-python-headless>=4.8,<4.12"]
-train = ["minestudio[policies,data]", "hydra-core>=1.3.2", "lightning", "wandb"]
+train = ["minestudio[policies,data]"]
 distributed = ["ray"]
 gui = ["pyglet<2", "imgui", "pyopengl"]
 legacy = [
     "minestudio[envs,policies,data,train,distributed,gui]", "huggingface-hub", "tqdm",
-    "ipython", "hydra_colorlog", "scipy", "diskcache", "albumentations", "timm",
+    "hydra-core>=1.3.2", "lightning", "wandb", "ipython", "hydra_colorlog", "scipy", "diskcache", "albumentations", "timm",
     "transformers", "pyrender==0.1.25", "dm-tree", "x_transformers==0.27.1",
     "cuda-python; platform_system!='Darwin'",
 ]
@@ -61,6 +61,7 @@ include = [
     "src/minestudio/__init__.py", "src/minestudio/core/**/*.py",
     "src/minestudio/actions/**/*.py", "src/minestudio/envs/**/*.py",
     "src/minestudio/policies/**/*.py", "src/minestudio/rollout/**/*.py",
+    "src/minestudio/training/**/*.py", "src/minestudio/data/dataset.py", "src/minestudio/data/legacy_lmdb.py",
     "src/minestudio/cli/**/*.py", "src/minestudio/tasks/**/*.py", "src/minestudio/data/storage/**/*.py", "src/minestudio/evaluation/**/*.py", "tests/unit/**/*.py", "tests/integration/**/*.py", "tests/e2e/**/*.py",
     "examples/v2/**/*.py",
     "src/minestudio/simulator/minerl/env/gpu_utils.py",

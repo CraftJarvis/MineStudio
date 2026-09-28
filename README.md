@@ -40,7 +40,7 @@ MineStudio brings environments, policies, data collection and evaluation togethe
 | [**Trajectory**](docs/guides/trajectories.md) | Inspect observations and actions, verify integrity, and recover interrupted attempts. |
 | [**Evaluation**](docs/guides/evaluation.md) | Run fixed task/seed cases and inspect results and saved artifacts. |
 
-> **Current release track: `2.0.0a2` on the `v2.0.0` branch.** This alpha is installed from source. Tasks, local rollouts, recording and evaluation are implemented; BC/PPO training, legacy dataset conversion and distributed execution are next on the [roadmap](#roadmap). For existing v1 projects, start with the [migration guide](docs/migration/v1-to-v2.md) or the [v1 README](docs/legacy/README-v1.md).
+> **Current release track: `2.0.0a2` on the `v2.0.0` branch.** This alpha is installed from source. Tasks, local rollouts, recording and evaluation are implemented. The development branch now also includes [single-GPU BC](docs/guides/behavior-cloning.md) and [synchronous PPO](docs/guides/ppo.md), including checkpoint recovery. Distributed execution remains on the [roadmap](#roadmap). For existing v1 projects, start with the [migration guide](docs/migration/v1-to-v2.md) or the [v1 README](docs/legacy/README-v1.md).
 
 ## See it in action
 
@@ -209,7 +209,7 @@ We publish the OpenAI VPT [contractor demonstrations](https://github.com/openai/
 | 9xx | [MineStudio 9xx · v110](https://huggingface.co/datasets/CraftJarvis/minestudio-data-9xx-v110) |
 | 10xx | [MineStudio 10xx · v110](https://huggingface.co/datasets/CraftJarvis/minestudio-data-10xx-v110) |
 
-The published `v110` datasets use the **legacy LMDB format**. The v2 `TrajectoryReader` reads the new manifest/JSONL/NPY format; historical dataset conversion and training windows are planned for the next stage. Existing dataset users can follow the [v1 data guide](docs/source/data/index.md).
+The published `v110` datasets use the **legacy LMDB format**. The v2 `TrajectoryReader` reads the new manifest/JSONL/NPY format. `TrajectoryDataset` now reads native trajectories and explicitly referenced legacy LMDB records through a fixed-split manifest; see the [BC guide](docs/guides/behavior-cloning.md). Existing dataset users can follow the [v1 data guide](docs/source/data/index.md).
 
 ## Documentation
 
@@ -237,8 +237,9 @@ The local site includes search, light/dark themes, mobile navigation and copyabl
 | --- | --- |
 | **Foundation** | **Implemented.** `src` layout, explicit APIs, optional dependencies and architecture documentation. |
 | **Research loop** | **Implemented in `2.0.0a2`.** Tasks, recording, local evaluation, VPT conversion and real Minecraft/GPU validation. |
-| **Offline learning** | **Next.** Training windows and masks, legacy LMDB conversion, a batch policy API, BC and export/reload validation. |
-| **Broader support** | **Planned.** PPO, Ray execution, additional policy families, richer task events and GUI migration. |
+| **Offline learning** | **Initial workflow verified.** Masked windows, legacy LMDB reader, differentiable VPT, single-GPU BC, checkpoint recovery and export/reload. [Engineering checks pass; short-run behavior regresses](docs/architecture/bc-validation.md). |
+| **Online learning** | **Initial PPO implemented.** Fresh on-policy rollouts, GAE, clipped updates, recurrent cache provenance and round-boundary checkpoints. [Scope and validation](docs/architecture/ppo-validation.md). |
+| **Broader support** | **Planned.** Ray execution, additional policy families, richer task events and GUI migration. |
 
 The [architecture specification](docs/architecture/v2.md) defines the stable `2.0.0` release gates. The `v2.0.0` branch name identifies the development track; the current package remains an alpha.
 

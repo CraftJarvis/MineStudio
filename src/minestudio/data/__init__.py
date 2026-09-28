@@ -11,4 +11,6 @@ def __getattr__(name):
     raise AttributeError(name)
 
 from minestudio.data.storage import RecordedTrajectory, TrajectoryReader, TrajectoryWriter
+from minestudio.data.dataset import TrajectoryDataset, TrajectorySubset
 __all__ += ["RecordedTrajectory", "TrajectoryReader", "TrajectoryWriter"]
+__all__ += ["TrajectoryDataset", "TrajectorySubset"]

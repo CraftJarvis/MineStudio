@@ -9,6 +9,7 @@ from minestudio.core.errors import (
 )
 from minestudio.core.trajectory import Episode, Transition
 from minestudio.core.types import ImageSize, Info, MinecraftAction, Observation, StepResult
+from minestudio.core.windows import TrajectoryWindow
 
 __all__ = [
     "BackendError",
@@ -22,5 +23,6 @@ __all__ = [
     "MissingDependencyError",
     "Observation",
     "StepResult",
+    "TrajectoryWindow",
     "Transition",
 ]

@@ -53,9 +53,9 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-      - run: python -m pip install -e '.[dev,policies,envs]'
-      - run: python -c 'import torch, cv2, gym3, safetensors, gym, rich, diskcache, Pyro4, lxml, daemoniker'
-      - run: python -m pytest tests/integration/test_vpt.py tests/integration/test_vpt_codec_reference.py tests/integration/test_minerl_import.py -q
+      - run: python -m pip install -e '.[dev,policies,envs,data]'
+      - run: python -c 'import torch, cv2, gym3, safetensors, gym, rich, diskcache, Pyro4, lxml, daemoniker, lmdb, av'
+      - run: python -m pytest tests/integration/test_vpt.py tests/integration/test_vpt_codec_reference.py tests/integration/test_minerl_import.py tests/integration/test_bc.py tests/integration/test_legacy_dataset.py tests/integration/test_ppo.py -q
   docs:
     runs-on: ubuntu-latest
     steps:

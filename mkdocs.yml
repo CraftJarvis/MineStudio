@@ -86,6 +86,8 @@ nav:
       - 采样与记录: guides/rollout.md
       - 读取与恢复轨迹: guides/trajectories.md
       - 固定种子评测: guides/evaluation.md
+      - 离线数据与 BC: guides/behavior-cloning.md
+      - 在线采样与 PPO: guides/ppo.md
   - API:
       - 公共入口: reference/index.md
       - 核心类型: reference/core.md
@@ -94,6 +96,7 @@ nav:
       - 任务: reference/tasks.md
       - 采样: reference/rollout.md
       - 轨迹存储: reference/data.md
+      - BC 与 PPO 训练: reference/training.md
       - 评测: reference/evaluation.md
   - 开发与迁移:
       - v2 架构规范: architecture/v2.md
@@ -101,4 +104,6 @@ nav:
       - 实现进度: architecture/progress.md
       - 阶段二验证记录: architecture/stage2-validation.md
       - GPU 与轨迹行为验证: architecture/gpu-validation.md
+      - BC 闭环验证: architecture/bc-validation.md
+      - PPO 闭环验证: architecture/ppo-validation.md
       - 从 v1 迁移: migration/v1-to-v2.md

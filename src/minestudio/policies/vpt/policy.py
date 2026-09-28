@@ -4,25 +4,32 @@ import hashlib
 import json
 import shutil
 import tempfile
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
 from minestudio import __version__
 from minestudio.actions import VPTAction, VPTActionCodec
-from minestudio.core import ImageSize, MinecraftAction, MissingDependencyError, Observation
+from minestudio.core import (
+    ImageSize,
+    MinecraftAction,
+    MissingDependencyError,
+    Observation,
+    TrajectoryWindow,
+)
 from minestudio.core.types import snapshot_observation
 from minestudio.policies.torch_policy import TorchPolicy
 from minestudio.policies.vpt.config import VPTConfig
 
 try:
-    import cv2
     import gymnasium as gym
     import torch
     from safetensors.torch import load_file, save_file
 
+    from minestudio.policies.batches import ActorCriticEvaluation, PolicyBatch
     from minestudio.policies.vpt._network import MinecraftPolicy
+    from minestudio.policies.vpt.processor import prepare_batch, resize_image
     from minestudio.utils.vpt_lib.action_head import make_action_head
     from minestudio.utils.vpt_lib.scaled_mse_head import ScaledMSEHead
 except ImportError as error:
@@ -74,8 +81,8 @@ def _digest(path: Path) -> str:
 class VPTPolicy(TorchPolicy):
     """Transformer VPT adapter, independent of Ray, Lightning and v1 MinePolicy.
 
-    act runs in evaluation/inference mode. A dedicated training/batch API will be
-    added in a later alpha; nn.Module inheritance alone is not that contract.
+    act runs in evaluation/inference mode; evaluate_actions preserves gradients.
+    Batched recurrent tensors are caller-owned and separate from single-stream VPTState.
     """
 
     def __init__(self, config: VPTConfig | None = None) -> None:
@@ -100,6 +107,99 @@ class VPTPolicy(TorchPolicy):
     def initial_state(self) -> VPTState:
         return VPTState(_state_to_device(self.net.initial_state(1), self.device))
 
+    def prepare_batch(self, windows: Sequence[TrajectoryWindow]) -> PolicyBatch:
+        return prepare_batch(windows, size=self.config.image_size, device=self.device)
+
+    def batch_state(self, state: VPTState, *, device: str | None = None) -> Any:
+        """Snapshot one stream's cache as ordinary tensors for sequence evaluation."""
+        return _state_to_device(
+            state.recurrent, self.device if device is None else torch.device(device)
+        )
+
+    def prepare_sequence(
+        self,
+        observations: Sequence[Observation],
+        policy_actions: Sequence[VPTAction],
+        first: Sequence[bool],
+    ) -> PolicyBatch:
+        """Build a single-stream batch from exact sampled codes, without re-encoding."""
+        if not observations or not len(observations) == len(policy_actions) == len(first):
+            raise ValueError("Sequence observations, encoded actions and first flags must align")
+        images = [
+            torch.from_numpy(
+                resize_image(snapshot_observation(obs)["image"], self.config.image_size)
+            )
+            for obs in observations
+        ]
+        return PolicyBatch(
+            {"image": torch.stack(images).unsqueeze(0).to(self.device)},
+            {
+                key: torch.tensor(
+                    [[a[key]] for a in policy_actions], dtype=torch.long, device=self.device
+                ).unsqueeze(0)
+                for key in ("buttons", "camera")
+            },
+            torch.ones((1, len(first)), dtype=torch.bool, device=self.device),
+            torch.tensor([first], dtype=torch.bool, device=self.device),
+        )
+
+    def evaluate_actions(self, batch: PolicyBatch, state: Any = None) -> ActorCriticEvaluation:
+        """Evaluate encoded labels with gradients and an explicit batch-state tree.
+
+        None starts with empty context, without declaring a true episode start.
+        To carry state across optimizer steps callers must detach it themselves.
+        The configured inference cache length is preserved for all batch lengths.
+        """
+        image = batch.inputs["image"]
+        shape = image.shape[:2]
+        if (
+            image.ndim != 5
+            or image.dtype != torch.uint8
+            or tuple(image.shape[2:])
+            != (self.config.image_size.height, self.config.image_size.width, 3)
+        ):
+            raise ValueError("VPT expects resized uint8[B,T,H,W,3] images")
+        for mask in (batch.valid_mask, batch.first_mask):
+            if mask.shape != shape or mask.dtype != torch.bool or mask.device != self.device:
+                raise ValueError("VPT masks must be bool[B,T] on the policy device")
+        if image.device != self.device or min(shape) < 1:
+            raise ValueError("VPT requires a nonempty batch on the policy device")
+        for key, limit in (("buttons", 8641), ("camera", 121)):
+            action = batch.actions[key]
+            if (
+                action.shape != (*shape, 1)
+                or action.dtype != torch.long
+                or action.device != self.device
+                or torch.any((action < 0) | (action >= limit))
+            ):
+                raise ValueError(f"Invalid VPT {key} labels")
+        if state is None:
+            state = self.net.initial_state(shape[0])
+        (latent, value_latent), next_state = self.net(
+            batch.inputs, state, {"first": batch.first_mask}
+        )
+        logits = self.pi_head(latent)
+        heads = self.pi_head.logprob(batch.actions, logits, return_dict=True)
+        return ActorCriticEvaluation(
+            heads["buttons"] + heads["camera"],
+            heads,
+            self.pi_head.entropy(logits),
+            next_state,
+            self.value_head.denormalize(self.value_head(value_latent)).squeeze(-1),
+        )
+
+    @torch.inference_mode()
+    def value(self, observation: Observation, state: VPTState | None = None) -> float:
+        """Bootstrap this observation without sampling or advancing caller-owned state."""
+        if self.training:
+            raise RuntimeError("Call eval() before VPT inference")
+        state = self.initial_state() if state is None else state
+        batch = self.prepare_sequence([observation], [{"buttons": 0, "camera": 60}], [state.first])
+        (_, latent), _ = self.net(
+            batch.inputs, self.batch_state(state), {"first": batch.first_mask}
+        )
+        return float(self.value_head.denormalize(self.value_head(latent)).item())
+
     def act(
         self,
         observation: Observation,
@@ -122,10 +222,9 @@ class VPTPolicy(TorchPolicy):
             raise RuntimeError("Call eval() before VPT inference")
         state = self.initial_state() if state is None else state
         image = snapshot_observation(observation)["image"]
-        size = self.config.image_size
-        if image.shape[:2] != (size.height, size.width):
-            image = cv2.resize(image, (size.width, size.height), interpolation=cv2.INTER_LINEAR)
-        image_tensor = torch.from_numpy(image.copy()).to(self.device)[None, None]
+        image_tensor = torch.from_numpy(resize_image(image, self.config.image_size)).to(
+            self.device
+        )[None, None]
         first = torch.tensor([[state.first]], dtype=torch.bool, device=self.device)
         (policy_latent, value_latent), recurrent = self.net(
             {"image": image_tensor},
@@ -203,6 +302,7 @@ class VPTPolicy(TorchPolicy):
             config["channels"] = tuple(config["channels"])
         policy = cls(VPTConfig(**config))
         policy.load_state_dict(load_file(str(weights)), strict=True)
+        policy._pretrained_manifest = manifest
         return policy.to(device).eval()
 
     @classmethod
