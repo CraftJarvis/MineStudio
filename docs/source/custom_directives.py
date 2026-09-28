@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-16 14:07:48
-LastEditors: muzhancun muzhancun@126.com
-LastEditTime: 2025-01-16 14:55:39
-FilePath: /MineStudio/docs/source/custom_directives.py
-'''
 import re
 import subprocess
 from packaging.version import Version

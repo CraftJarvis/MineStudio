@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-12 10:57:29
-LastEditors: muzhancun muzhancun@126.com
-LastEditTime: 2025-01-18 13:53:17
-FilePath: /MineStudio/minestudio/offline/mine_callbacks/callback.py
-'''
 import torch
 from typing import Dict, Any
 from minestudio.models import MinePolicy

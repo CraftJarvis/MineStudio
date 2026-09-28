@@ -1,9 +1,3 @@
-'''
-Date: 2024-12-14 01:46:36
-LastEditors: muzhancun muzhancun@126.com
-LastEditTime: 2024-12-14 02:00:17
-FilePath: /MineStudio/minestudio/models/utils/download.py
-'''
 import huggingface_hub
 import os
 import pathlib

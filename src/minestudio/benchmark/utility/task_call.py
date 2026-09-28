@@ -1,9 +1,3 @@
-'''
-Date: 2024-12-06 16:42:49
-LastEditors: zhengxinyue
-LastEditTime: 2024-12-11 17:44:10
-FilePath: /MineStudio/minestudio/benchmark/utility/task.py
-'''
 import random
 from minestudio.simulator.callbacks.callback import MinecraftCallback
 

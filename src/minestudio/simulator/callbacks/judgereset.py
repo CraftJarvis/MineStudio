@@ -1,9 +1,3 @@
-'''
-Date: 2025-06-12 19:46:03
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-06-12 19:47:07
-FilePath: /MineStudio/minestudio/simulator/callbacks/judgereset.py
-'''
 from minestudio.simulator.callbacks.callback import MinecraftCallback
 from minestudio.simulator.utils import MinecraftGUI, GUIConstants
 from minestudio.simulator.utils.gui import PointDrawCall

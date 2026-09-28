@@ -1,9 +1,3 @@
-<!--
- * @Date: 2024-12-01 08:30:33
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-27 23:21:22
- * @FilePath: /MineStudio/docs/source/data/quick-data.md
--->
 Here is a minimal example to show how we load trajectories from the dataset. 
 
 ```python

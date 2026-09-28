@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-18 20:37:50
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-11-24 08:23:45
-FilePath: /MineStudio/minestudio/simulator/callbacks/point.py
-'''
-
 from minestudio.simulator.callbacks.callback import MinecraftCallback
 from minestudio.simulator.utils import MinecraftGUI, GUIConstants
 from minestudio.simulator.utils.gui import PointDrawCall, SegmentDrawCall, MultiPointDrawCall

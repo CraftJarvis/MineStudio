@@ -1,9 +1,3 @@
-<!--
- * @Date: 2024-12-03 04:47:37
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 01:27:07
- * @FilePath: /MineStudio/docs/source/models/index.md
--->
 # Models
 
 We provided a template for the Minecraft Policy, `MinePolicy`, and based on this template, we created various different baseline models. Currently, MineStudio supports VPT, STEVE-1, GROOT, and ROCKET-1, among others. This page details the `MinePolicy` template and how to create your own policies.

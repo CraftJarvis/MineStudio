@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-11-30 13:20:04
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 13:06:53
- * @FilePath: /MineStudio/README.md
--->
-
 <div align="center">
 <img src="../source/_static/banner.png" width="60%" alt="MineStudio" />
 </div>

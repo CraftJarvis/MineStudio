@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-09 05:08:19
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-21 22:28:09
-FilePath: /MineStudio/minestudio/data/minecraft/callbacks/callback.py
-'''
 import numpy as np
 from pathlib import Path
 from typing import Union, Tuple, List, Dict, Callable, Any, Optional, Literal

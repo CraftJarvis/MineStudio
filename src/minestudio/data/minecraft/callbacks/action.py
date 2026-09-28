@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-09 05:27:25
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-27 15:04:29
-FilePath: /MineStudio/minestudio/data/minecraft/callbacks/action.py
-'''
 import re
 import cv2
 import pickle

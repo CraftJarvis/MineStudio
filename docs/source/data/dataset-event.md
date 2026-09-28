@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-12-01 08:37:03
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 00:11:39
- * @FilePath: /MineStudio/docs/source/data/dataset-event.md
--->
-
 # Event Dataset
 
 The Event Dataset provides a way to load data segments centered around specific in-game events. This is useful for training models that need to react to or learn from particular occurrences. The underlying `EventDataset` class works by identifying events (e.g., `kill_entity`, `mine_block`) from an event database and then fetching a window of multi-modal data (like images, actions) around each event's timestamp.

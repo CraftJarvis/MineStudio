@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-10 10:06:28
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2025-01-09 16:33:22
-FilePath: /MineStudio/minestudio/data/minecraft/utils.py
-'''
 import os
 import av
 import cv2

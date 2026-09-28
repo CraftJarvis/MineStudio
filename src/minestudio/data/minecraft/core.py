@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-09 05:45:49
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-17 21:54:30
-FilePath: /MineStudio/minestudio/data/minecraft/core.py
-'''
 import lmdb
 import pickle
 import hashlib

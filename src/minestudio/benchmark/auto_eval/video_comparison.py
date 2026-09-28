@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-21 21:38:32
-LastEditors: zhengxinyue
-LastEditTime: 2024-12-06 16:39:13
-FilePath: /MineStudio/minestudio/benchmark/auto_eval/video_comparison.py
-'''
 import cv2  # We're using OpenCV to read video
 import base64
 import time

@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-11 05:20:17
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-06-16 17:57:05
-FilePath: /MineStudio/minestudio/simulator/entry.py
-'''
-
 import os
 import cv2
 import argparse

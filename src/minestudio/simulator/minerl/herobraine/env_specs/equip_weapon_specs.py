@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 05:00:34
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-11-11 05:02:29
-FilePath: /MineStudio/minestudio/simulator/minerl/herobraine/env_specs/equip_weapon_specs.py
-'''
 from minestudio.simulator.minerl.herobraine.env_specs.human_controls import HumanControlEnvSpec
 from minestudio.simulator.minerl.herobraine.hero.mc import MS_PER_STEP, STEPS_PER_MS, ALL_ITEMS
 from minestudio.simulator.minerl.herobraine.hero.handler import Handler

@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-11-29 08:09:45
- * @LastEditors: caishaofei caishaofei@stu.pku.edu.cn
- * @LastEditTime: 2024-12-15 13:00:28
- * @FilePath: /MineStudio/docs/source/offline/index.md
--->
-
 # Offline Training
 
 Pre-training is a crucial approach for equipping policy models with diverse behaviors, as demonstrated in [VPT](https://arxiv.org/abs/2206.11795). MineStudio supports pre-training with offline data, enabling users to easily perform pre-training through a straightforward configuration file. 

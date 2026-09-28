@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-15 15:23:54
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-18 18:16:26
-FilePath: /MineStudio/tests/test_fabric_event_dataset.py
-'''
 import lightning as L
 from tqdm import tqdm
 from minestudio.data import EventDataModule

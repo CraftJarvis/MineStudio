@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-12-02 21:23:42
- * @LastEditors: muzhancun muzhancun@stu.pku.edu.cn
- * @LastEditTime: 2025-05-28 14:48:21
- * @FilePath: /MineStudio/docs/source/inference/quick-inference.md
--->
-
 Here is a minimal example of how to use the inference framework:
 
 ```python

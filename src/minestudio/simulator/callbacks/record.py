@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 16:40:57
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2024-11-20 00:30:51
-FilePath: /MineStudio/minestudio/simulator/callbacks/record.py
-'''
 import av
 from pathlib import Path
 from minestudio.simulator.callbacks.callback import MinecraftCallback

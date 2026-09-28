@@ -1,9 +1,3 @@
-'''
-Date: 2024-12-06 16:42:49
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-06-06 13:59:32
-FilePath: /MineStudio/minestudio/benchmark/utility/read_conf.py
-'''
 import os
 import yaml
 import shutil

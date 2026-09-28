@@ -1,10 +1,3 @@
-<!--
- * @Date: 2025-05-28 00:30:54
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 00:44:54
- * @FilePath: /MineStudio/docs/source/data/callbacks.md
--->
-
 # Data Processing Callbacks
 
 MineStudio employs a flexible callback mechanism to handle the loading, conversion, and visualization of data across different modalities. This design aims to achieve separation of concerns, decoupling data processing logic from the core data loading framework. Users can easily extend the system's functionality for custom raw data formats or new data modalities by implementing specific callback classes, without needing to modify the core code.

@@ -1,9 +1,3 @@
-<!--
- * @Date: 2024-11-29 08:08:34
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 00:46:46
- * @FilePath: /MineStudio/docs/source/data/index.md
--->
 # Data
 
 We design a trajectory structure for storing Minecraft data. Based on this data structure, users are able to store and retrieve arbitray trajectory segment in an efficient way. 

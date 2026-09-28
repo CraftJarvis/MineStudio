@@ -1,10 +1,3 @@
-'''
-Date: 2024-12-17 02:07:48
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-12-17 06:14:38
-FilePath: /MineStudio/minestudio/tutorials/offline/2_pretrain_rockets/evaluate.py
-'''
-
 import hydra
 import torch
 import torch.nn as nn

@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-07 05:58:26
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-15 20:40:34
-FilePath: /ROCKET-2/var/nfs-shared/shaofei/nfs-workspace/MineStudio/minestudio/simulator/callbacks/demonstration.py
-'''
 import random
 import numpy as np
 import os

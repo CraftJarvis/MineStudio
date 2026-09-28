@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-12 11:53:55
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-22 23:38:09
-FilePath: /MineStudio/minestudio/tutorials/simulator/test_sim.py
-'''
 import numpy as np
 from minestudio.simulator import MinecraftSim
 from minestudio.simulator.callbacks import (

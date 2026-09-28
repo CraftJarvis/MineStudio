@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-25 07:29:21
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-11-25 12:40:22
-FilePath: /MineStudio/minestudio/inference/pipeline.py
-'''
-
 import ray
 from typing import Union, List, Optional
 from minestudio.inference.generator.base_generator import EpisodeGenerator

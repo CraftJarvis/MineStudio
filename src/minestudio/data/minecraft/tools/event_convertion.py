@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-10 12:26:39
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-17 21:40:14
-FilePath: /MineStudio/var/minestudio/data/minecraft/tools/event_convertion.py
-'''
-
 import re
 import os
 import lmdb

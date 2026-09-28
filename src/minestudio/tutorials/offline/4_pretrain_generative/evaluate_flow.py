@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-18 23:15:39
-LastEditors: muzhancun 2100017790@stu.pku.edu.cn
-LastEditTime: 2025-01-25 15:58:02
-FilePath: /MineStudio/minestudio/tutorials/offline/4_pretrain_generative/evaluate_flow.py
-'''
 import numpy as np
 from minestudio.simulator import MinecraftSim
 from functools import partial

@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-15 14:57:39
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2024-11-17 22:32:08
-FilePath: /Minestudio/minestudio/simulator/utils/constants.py
-'''
-
 class GUIConstants:
     """
     Defines constants used for the Minecraft GUI.

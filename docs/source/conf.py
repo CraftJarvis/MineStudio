@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-28 17:46:44
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-29 14:09:34
-FilePath: /MineStudio/docs/source/conf.py
-'''
 import os
 import sys
 from datetime import datetime

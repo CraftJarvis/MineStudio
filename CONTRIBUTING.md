@@ -30,6 +30,8 @@ The new public contract is defined in [the architecture specification](docs/arch
 New code uses explicit domain imports, typed public functions, Google-style docstrings,
 100-column Ruff formatting and caller-owned policy state. Optional runtimes belong
 behind explicit feature imports. Configuration errors must remain visible.
+Do not add editor-generated timestamps, last-editor identities or file paths to
+file headers. Git records this history; keep useful module docstrings and license notices.
 
 Pyright strict currently covers core/actions/envs/policy protocols/VPT config/rollout/CLI,
 tasks, native trajectory storage and evaluation. The

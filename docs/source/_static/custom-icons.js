@@ -1,9 +1,3 @@
-/*
- * @Date: 2025-05-28 13:50:00
- * @LastEditors: muzhancun muzhancun@stu.pku.edu.cn
- * @LastEditTime: 2025-05-28 13:53:17
- * @FilePath: /MineStudio/docs/source/_static/custom-icons.js
- */
 FontAwesome.library.add(
     /**
      * Custom icon definitions

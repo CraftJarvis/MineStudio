@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-10 12:24:45
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-11-10 12:26:41
-FilePath: /MineStudio/minestudio/data/minecraft/tools/process_all_openai.py
-'''
-
 import os
 import json
 import pickle

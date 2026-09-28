@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-10 12:28:23
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-11-10 12:30:32
-FilePath: /MineStudio/minestudio/data/minecraft/tools/label_action_idm.py
-'''
-
 import os
 import time
 import argparse

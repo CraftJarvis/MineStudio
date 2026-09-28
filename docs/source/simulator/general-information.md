@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-11-29 14:50:07
- * @LastEditors: caishaofei caishaofei@stu.pku.edu.cn
- * @LastEditTime: 2024-11-30 05:38:30
- * @FilePath: /MineStudio/docs/source/simulator/general-information.md
--->
-
 # General Information
 
 

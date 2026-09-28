@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-11-30 05:44:44
- * @LastEditors: caishaofei caishaofei@stu.pku.edu.cn
- * @LastEditTime: 2024-12-01 08:28:50
- * @FilePath: /MineStudio/docs/source/simulator/quick-simulator.md
--->
-
 Here is a minimal example of how to use the simulator:
 
 ```python

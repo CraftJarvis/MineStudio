@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-26 06:26:26
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-11-26 06:28:27
-FilePath: /MineStudio/minestudio/train/utils.py
-'''
 from typing import Dict, Any, List
 from omegaconf import DictConfig, ListConfig
 

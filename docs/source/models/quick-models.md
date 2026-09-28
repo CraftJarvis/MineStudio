@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-12-03 04:54:21
- * @LastEditors: caishaofei caishaofei@stu.pku.edu.cn
- * @LastEditTime: 2025-05-28 01:14:51
- * @FilePath: /MineStudio/docs/source/models/quick-models.md
--->
-
 Here is an example that shows how to load and use OpenAI's VPT policy within the Minecraft environment provided by MineStudio.
 
 ```python

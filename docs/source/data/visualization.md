@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-12-12 09:18:35
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 00:22:38
- * @FilePath: /MineStudio/docs/source/data/visualization.md
--->
-
 # Visualization
 
 We provide a utility function `visualize_dataloader` that allows users to generate videos from the dataloader's output. This is useful for debugging, verifying data correctness, and understanding what the model will see.

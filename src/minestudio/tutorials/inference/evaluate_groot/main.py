@@ -1,9 +1,3 @@
-'''
-Date: 2024-12-13 22:39:49
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-02-13 20:00:03
-FilePath: /MineStudio/minestudio/tutorials/inference/evaluate_groot/main.py
-'''
 from minestudio.simulator import MinecraftSim
 from minestudio.simulator.callbacks import SpeedTestCallback, load_callbacks_from_config
 from minestudio.models import GrootPolicy, load_groot_policy

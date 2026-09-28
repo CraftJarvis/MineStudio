@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-12 14:00:50
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-15 17:01:11
-FilePath: /MineStudio/minestudio/tutorials/offline/1_finetune_vpts/train_event.py
-'''
 import hydra
 import lightning as L
 

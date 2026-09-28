@@ -1,10 +1,3 @@
-'''
-Date: 2025-01-05 22:26:22
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-16 23:43:49
-FilePath: /MineStudio/minestudio/simulator/callbacks/init_inventory.py
-'''
-
 import minecraft_data # https://github.com/SpockBotMC/python-minecraft-data  Provide easy access to minecraft-data in python
 from typing import Union, List, Dict, Tuple, Set
 import random

@@ -1,9 +1,3 @@
-<!--
- * @Date: 2025-03-18 14:36:00
- * @LastEditors: muzhancun muzhancun@stu.pku.edu.cn
- * @LastEditTime: 2025-05-28 16:46:45
- * @FilePath: /MineStudio/docs/source/online/customization.md
--->
 # Customize
 
 Our framework supports customization of online algorithm details.

@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-10 12:27:01
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-15 15:04:05
-FilePath: /MineStudio/minestudio/data/minecraft/tools/convertion.py
-'''
-
 import ray
 import time
 import pickle

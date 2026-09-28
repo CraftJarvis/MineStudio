@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-11-29 15:45:12
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 01:08:35
- * @FilePath: /MineStudio/docs/source/simulator/design-principles.md
--->
-
 # Design Principles
 
 ## Simulator Lifecycle and Callback Integration

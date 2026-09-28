@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-25 07:35:51
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-11-25 12:55:03
-FilePath: /MineStudio/minestudio/inference/recorder/base_recorder.py
-'''
 from abc import abstractmethod
 from typing import List, Dict, Union, Generator
 

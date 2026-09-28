@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 20:54:15
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-28 14:29:56
-FilePath: /MineStudio/minestudio/models/vpt/body.py
-'''
 import os
 import pickle
 import gymnasium

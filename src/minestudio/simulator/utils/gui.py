@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-15 15:15:22
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2024-11-20 01:02:18
-FilePath: /MineStudio/minestudio/simulator/utils/gui.py
-'''
 from minestudio.simulator.utils.constants import GUIConstants   
 
 from collections import defaultdict

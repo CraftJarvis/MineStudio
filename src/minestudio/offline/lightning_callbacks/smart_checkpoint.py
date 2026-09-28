@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-28 15:37:18
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-27 14:03:44
-FilePath: /MineStudio/minestudio/offline/lightning_callbacks/smart_checkpoint.py
-'''
 from lightning.pytorch.callbacks import ModelCheckpoint
 from minestudio.offline.lightning_callbacks.ema import EMA
 from lightning.pytorch.utilities.rank_zero import rank_zero_info

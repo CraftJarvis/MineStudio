@@ -1,10 +1,3 @@
-'''
-Date: 2024-12-06 16:35:39
-LastEditors: zhengxinyue
-LastEditTime: 2024-12-11 17:47:25
-FilePath: /MineStudio/minestudio/benchmark/test.py
-'''
-
 import os
 import ray
 from pathlib import Path

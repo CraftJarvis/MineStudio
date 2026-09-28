@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-25 08:35:59
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-12-02 11:59:51
-FilePath: /MineStudio/minestudio/inference/generator/mine_generator.py
-'''
 import os
 import ray
 

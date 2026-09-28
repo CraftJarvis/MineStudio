@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-09 05:07:59
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-21 22:28:22
-FilePath: /MineStudio/minestudio/data/minecraft/callbacks/image.py
-'''
 import re
 import io
 import av

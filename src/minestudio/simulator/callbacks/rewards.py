@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-11 17:44:15
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2024-11-14 20:09:56
-FilePath: /Minestudio/minestudio/simulator/callbacks/rewards.py
-'''
-
 import numpy as np
 from minestudio.simulator.callbacks.callback import MinecraftCallback
 

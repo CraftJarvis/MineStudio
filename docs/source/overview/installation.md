@@ -1,9 +1,3 @@
-<!--
- * @Date: 2024-11-28 22:13:52
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 00:59:28
- * @FilePath: /MineStudio/docs/source/overview/installation.md
--->
 (gentle-intro)=
 # Installation
 

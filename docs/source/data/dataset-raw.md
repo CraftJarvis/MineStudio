@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-12-01 08:37:10
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-27 23:53:07
- * @FilePath: /MineStudio/docs/source/data/dataset-raw.md
--->
-
 # Raw Dataset
 
 The Raw Dataset refers to a simple way of reading the original data, which stores the raw trajectory segments in chronological order. 

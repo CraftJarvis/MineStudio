@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-10 11:01:51
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-21 22:51:41
-FilePath: /MineStudio/var/tests/test_viz_raw.py
-'''
 import argparse
 from torch.utils.data import DataLoader
 from tqdm import tqdm

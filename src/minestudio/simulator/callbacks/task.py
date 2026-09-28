@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 19:29:45
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2024-11-12 00:12:11
-FilePath: /MineStudio/minestudio/simulator/callbacks/task.py
-'''
 import random
 from minestudio.simulator.callbacks.callback import MinecraftCallback
 

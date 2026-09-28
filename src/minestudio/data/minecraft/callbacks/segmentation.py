@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-09 05:42:00
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-21 22:31:03
-FilePath: /MineStudio/minestudio/data/minecraft/callbacks/segmentation.py
-'''
 import cv2
 import random
 import pickle

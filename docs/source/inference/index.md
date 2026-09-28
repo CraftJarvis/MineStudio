@@ -1,9 +1,3 @@
-<!--
- * @Date: 2024-11-29 08:10:04
- * @LastEditors: muzhancun muzhancun@stu.pku.edu.cn
- * @LastEditTime: 2025-06-02 14:21:12
- * @FilePath: /MineStudio/docs/source/inference/index.md
--->
 # Inference
 
 We provide a [Ray](https://docs.ray.io/en/latest/index.html)-based inference framework for MineStudio, to support parallel and distributed inference. The framework is designed to consist of three parts: `generator`, `filter` and `recorder`, forming an inference pipeline for easily evaluating the performance of different agents.

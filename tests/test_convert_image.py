@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-15 00:13:35
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-15 14:06:15
-FilePath: /MineStudio/tests/test_convert_image.py
-'''
 import ray
 import argparse
 from rich import print

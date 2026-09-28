@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-11-30 04:11:42
- * @LastEditors: muzhancun muzhancun@126.com
- * @LastEditTime: 2024-12-02 23:58:22
- * @FilePath: /MineStudio/docs/source/simulator/play.md
--->
-
 # Graphical User Interfaces
 
 ## Hello World

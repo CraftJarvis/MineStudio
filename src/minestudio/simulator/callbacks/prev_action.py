@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 19:31:53
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-06-12 19:48:23
-FilePath: /MineStudio/minestudio/simulator/callbacks/prev_action.py
-'''
 import os
 import yaml
 import numpy as np

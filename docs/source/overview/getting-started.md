@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-11-29 08:08:13
- * @LastEditors: muzhancun muzhancun@stu.pku.edu.cn
- * @LastEditTime: 2025-05-29 13:28:47
- * @FilePath: /MineStudio/docs/source/overview/getting-started.md
--->
-
 ```{image} ../_static/banner.png
 :width: 90%
 ```

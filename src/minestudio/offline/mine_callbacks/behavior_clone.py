@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-12 13:59:08
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-12-09 15:51:34
-FilePath: /MineStudio/minestudio/train/mine_callbacks/behavior_clone.py
-'''
-
 import torch
 from typing import Dict, Any
 from minestudio.models import MinePolicy

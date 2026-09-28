@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 19:31:53
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-16 18:09:12
-FilePath: /ROCKET-2/var/nfs-shared/shaofei/nfs-workspace/MineStudio/minestudio/simulator/callbacks/commands.py
-'''
 import os
 import yaml
 from typing import Dict, List, Tuple, Union, Sequence, Mapping, Any, Optional, Literal

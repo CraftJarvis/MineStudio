@@ -1,9 +1,3 @@
-'''
-Date: 2024-12-13 14:31:12
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-06-06 14:03:50
-FilePath: /MineStudio/minestudio/tutorials/inference/evaluate_vpts/shoot_animals.py
-'''
 import ray
 from rich import print
 from minestudio.inference import EpisodePipeline, MineGenerator, InfoBaseFilter

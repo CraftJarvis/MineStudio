@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-10 10:26:32
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-21 23:03:15
-FilePath: /MineStudio/minestudio/data/minecraft/dataset_raw.py
-'''
 import io
 import re
 import os

@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 16:15:32
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-16 23:45:32
-FilePath: /MineStudio/minestudio/simulator/callbacks/hard_reset.py
-'''
 import random
 import numpy as np
 from typing import List

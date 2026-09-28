@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-15 15:12:23
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-18 18:14:14
-FilePath: /MineStudio/tests/test_fabric_raw_dataset.py
-'''
 import lightning as L
 from tqdm import tqdm
 

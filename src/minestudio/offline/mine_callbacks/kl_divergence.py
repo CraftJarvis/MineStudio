@@ -1,10 +1,3 @@
-'''
-Date: 2024-12-12 13:10:58
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-27 14:14:37
-FilePath: /MineStudio/minestudio/offline/mine_callbacks/kl_divergence.py
-'''
-
 import torch
 from typing import Dict, Any
 from minestudio.models import MinePolicy

@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-09 05:36:19
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-27 14:45:03
-FilePath: /MineStudio/minestudio/data/minecraft/callbacks/meta_info.py
-'''
 import cv2
 import pickle
 import numpy as np

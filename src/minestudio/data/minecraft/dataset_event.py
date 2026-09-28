@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-10 10:26:52
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-27 15:24:46
-FilePath: /MineStudio/minestudio/data/minecraft/dataset_event.py
-'''
 import io
 import re
 import os

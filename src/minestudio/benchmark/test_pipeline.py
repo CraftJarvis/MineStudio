@@ -1,9 +1,3 @@
-'''
-Date: 2024-12-06 16:42:49
-LastEditors: zhengxinyue
-LastEditTime: 2024-12-12 17:44:10
-FilePath: /MineStudio/minestudio/benchmark/test_pipeline.py
-'''
 import os
 from pathlib import Path
 from functools import partial

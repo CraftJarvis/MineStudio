@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 16:15:32
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-06-12 19:47:39
-FilePath: /MineStudio/minestudio/simulator/callbacks/fast_reset.py
-'''
 import random
 import numpy as np
 from minestudio.simulator.callbacks.callback import MinecraftCallback

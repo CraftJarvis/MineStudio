@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-10 12:24:31
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-11-10 12:26:26
-FilePath: /MineStudio/minestudio/data/minecraft/tools/process_privilege_openai.py
-'''
-
 import os
 import sys
 import json

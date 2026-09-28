@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-24 08:23:02
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-15 17:09:48
-FilePath: /MineStudio/minestudio/tutorials/offline/3_pretrain_groots/main.py
-'''
 import hydra
 import torch
 import torch.nn as nn

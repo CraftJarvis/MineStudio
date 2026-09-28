@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-12-12 09:18:35
- * @LastEditors: caishaofei caishaofei@stu.pku.edu.cn
- * @LastEditTime: 2025-05-28 11:00:00
- * @FilePath: /MineStudio/docs/source/data/convertion.md
--->
-
 # Data Conversion
 
 We provide tools to convert raw trajectory data into the MineStudio LMDB format. This conversion is crucial for efficient data loading and utilization within the MineStudio framework.

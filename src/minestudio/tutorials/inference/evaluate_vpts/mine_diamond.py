@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-25 08:11:33
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-06-06 14:02:15
-FilePath: /MineStudio/minestudio/tutorials/inference/evaluate_vpts/mine_diamond.py
-'''
 import ray
 from rich import print
 from minestudio.inference import EpisodePipeline, MineGenerator, InfoBaseFilter

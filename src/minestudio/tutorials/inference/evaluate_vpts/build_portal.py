@@ -1,9 +1,3 @@
-'''
-Date: 2024-12-13 14:31:12
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2025-01-04 14:06:19
-FilePath: /MineStudio/minestudio/tutorials/inference/evaluate_vpts/build_portal.py
-'''
 import ray
 from rich import print
 from minestudio.inference import EpisodePipeline, MineGenerator, InfoBaseFilter

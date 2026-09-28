@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-06 20:08:00
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2025-01-07 11:17:00
-FilePath: /MineStudio/minestudio/benchmark/task_configs/upload.py
-'''
 from huggingface_hub import HfApi
 
 if __name__ == '__main__':

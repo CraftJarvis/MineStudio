@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-15 00:13:35
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-15 13:38:30
-FilePath: /MineStudio/var/tests/test_convert_action.py
-'''
 import ray
 import argparse
 from rich import print

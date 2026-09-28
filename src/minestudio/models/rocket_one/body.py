@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-10 15:52:16
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-01-15 17:08:36
-FilePath: /MineStudio/minestudio/models/rocket_one/body.py
-'''
 import torch
 import torch.nn.functional as F
 import torchvision

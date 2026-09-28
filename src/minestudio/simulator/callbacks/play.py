@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-14 20:10:54
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2024-11-20 01:06:35
-FilePath: /MineStudio/minestudio/simulator/callbacks/play.py
-'''
 from minestudio.simulator.callbacks.callback import MinecraftCallback
 from minestudio.simulator.utils import MinecraftGUI, GUIConstants
 

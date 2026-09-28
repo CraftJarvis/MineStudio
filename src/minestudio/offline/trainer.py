@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-10 13:44:13
-LastEditors: muzhancun muzhancun@126.com
-LastEditTime: 2025-01-18 13:52:32
-FilePath: /MineStudio/minestudio/offline/trainer.py
-'''
 import os
 import torch
 import torch.nn as nn

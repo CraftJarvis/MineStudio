@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-06 17:32:04
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-06-15 17:02:18
-FilePath: /MineStudio/minestudio/simulator/callbacks/callback.py
-'''
 import os
 import yaml
 import random

@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-11 17:37:06
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-26 21:20:51
-FilePath: /MineStudio/minestudio/simulator/callbacks/mask_actions.py
-'''
-
 from minestudio.simulator.callbacks.callback import MinecraftCallback
 
 class MaskActionsCallback(MinecraftCallback):

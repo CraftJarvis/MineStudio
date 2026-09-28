@@ -1,9 +1,3 @@
-'''
-Date: 2025-01-25 15:54:33
-LastEditors: muzhancun 2100017790@stu.pku.edu.cn
-LastEditTime: 2025-01-25 15:56:36
-FilePath: /MineStudio/minestudio/tutorials/offline/4_pretrain_generative/train_diffusion.py
-'''
 import hydra
 import lightning as L
 

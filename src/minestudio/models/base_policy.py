@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-11 15:59:37
-LastEditors: muzhancun muzhancun@stu.pku.edu.cn
-LastEditTime: 2025-05-26 21:41:12
-FilePath: /MineStudio/minestudio/models/base_policy.py
-'''
 from abc import ABC, abstractmethod
 import numpy as np
 import torch

@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-25 07:03:41
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2025-01-07 14:21:06
-FilePath: /MineStudio/minestudio/models/groot_one/body.py
-'''
 import torch
 import torch.nn.functional as F
 import torchvision

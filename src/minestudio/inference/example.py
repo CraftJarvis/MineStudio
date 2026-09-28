@@ -1,10 +1,3 @@
-'''
-Date: 2024-11-14 19:42:09
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2024-12-15 13:36:22
-FilePath: /MineStudio/minestudio/inference/example.py
-'''
-
 from minestudio.simulator import MinecraftSim
 from minestudio.simulator.callbacks import RecordCallback, SpeedTestCallback
 from minestudio.models import VPTPolicy, load_vpt_policy

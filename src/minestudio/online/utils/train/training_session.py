@@ -1,9 +1,3 @@
-'''
-Date: 2025-05-20 18:18:38
-LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-05-20 18:23:37
-FilePath: /MineStudio/minestudio/online/utils/train/training_session.py
-'''
 from numpy import roll
 from omegaconf import OmegaConf
 from omegaconf import DictConfig

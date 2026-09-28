@@ -1,9 +1,3 @@
-'''
-Date: 2024-11-25 12:39:01
-LastEditors: caishaofei caishaofei@stu.pku.edu.cn
-LastEditTime: 2025-01-07 08:19:00
-FilePath: /MineStudio/minestudio/inference/filter/info_base_filter.py
-'''
 import re
 import pickle
 from minestudio.inference.filter.base_filter import EpisodeFilter

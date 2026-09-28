@@ -1,10 +1,3 @@
-<!--
- * @Date: 2024-11-29 08:09:07
- * @LastEditors: caishaofei-mus1 1744260356@qq.com
- * @LastEditTime: 2025-05-28 01:03:49
- * @FilePath: /MineStudio/docs/source/simulator/index.md
--->
-
 # Simulator
 
 We provide an easily customizable Minecraft simulator that is developed based on [MineRL](https://github.com/minerllabs/minerl). We designed a Gym-style Minecraft Wrapper, which supports a callbacks mechanism, allowing users to customize their own environment, including custom reward functions, environment initialization, trajectory recording, and more. 
