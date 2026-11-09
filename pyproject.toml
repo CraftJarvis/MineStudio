@@ -8,8 +8,8 @@ version = "1.1.5"
 description = "A simple and efficient Minecraft Agent development kit for AI research."
 dependencies = [
     "av==13.1.0",
-    "opencv-python==4.8.0.74",
-    "opencv-python-headless==4.8.0.74",
+    "opencv-python==4.8.1.78",
+    "opencv-python-headless==4.8.1.78",
     "setuptools",
     "tqdm",
     "numpy",
